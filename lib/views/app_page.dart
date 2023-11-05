@@ -22,7 +22,10 @@ class AppPage extends StatelessWidget {
           if (snapshot.data == true) {
             return const HomePage();
           } else {
-            return const AuthPage();
+            Future.delayed(const Duration(milliseconds: 1), () {
+              Get.toNamed('/auth');
+            });
+            return const SizedBox.shrink(); // Return an empty widget
           }
         }
       },

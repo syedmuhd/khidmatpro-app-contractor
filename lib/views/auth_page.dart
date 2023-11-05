@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/controllers/AuthController.dart';
+import 'package:khidmatpro_app_vendor/utilities/app_button.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
-import 'package:khidmatpro_app_vendor/utilities/texts.dart';
+import 'package:khidmatpro_app_vendor/utilities/text_field_input_decoration.dart';
+import 'package:khidmatpro_app_vendor/utilities/text_field_text_style.dart';
 import 'package:lottie/lottie.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends GetView<AuthController> {
   const AuthPage({super.key});
 
   @override
@@ -25,104 +29,37 @@ class AuthPage extends StatelessWidget {
                   textDirection: TextDirection.ltr,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText(text: "Log In"),
+                    const AppText(text: "Log In", size: 20),
                     const SizedBox(
                       height: 50,
                     ),
-                    const TextField(
-                      // controller: _emailController,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF393939),
-                        fontSize: 13,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                          color: Color(0xFF755DC1),
-                          fontSize: 15,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xFF837E93),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xFF9F7BFF),
-                          ),
-                        ),
-                      ),
+                    TextField(
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        controller.email.value = value;
+                      },
+                      style: TextFieldTextStyle.style(),
+                      decoration: TextFieldInputDecoration.style(text: "Email"),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
-                    const TextField(
-                      // controller: _passController,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF393939),
-                        fontSize: 13,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          color: Color(0xFF755DC1),
-                          fontSize: 15,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xFF837E93),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xFF9F7BFF),
-                          ),
-                        ),
-                      ),
+                    TextField(
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        controller.password.value = value;
+                      },
+                      style: TextFieldTextStyle.style(),
+                      decoration: TextFieldInputDecoration.style(text: "Password"),
                     ),
                     const SizedBox(
                       height: 25,
                     ),
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: SizedBox(
-                        width: 329,
-                        height: 56,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF9F7BFF),
-                          ),
-                          child: const Text(
-                            'Sign In',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    AppButton(
+                        text: "Sign In",
+                        onPressed: () {
+                          controller.signIn();
+                        }),
                     const SizedBox(
                       height: 15,
                     ),
