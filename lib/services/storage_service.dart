@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:khidmatpro_app_vendor/enums/storage_enums.dart';
 
 class StorageService extends GetxService {
+  @override
+  Future<void> onInit() async {
+    final apiKey = await readApiKey();
+
+    // If api key is not yet exist,
+    // or is empty (""),
+    // create a new one with empty values
+    if (apiKey == null || apiKey.isEmpty) {
+      debugPrint('[Storage] Creating a new key: ApiKey with empty value');
+      await writeApiKey("");
+    }
+
+    debugPrint('$runtimeType ready!');
+  }
+
   /// Storage
   FlutterSecureStorage storage() {
     AndroidOptions getAndroidOptions() => const AndroidOptions(
@@ -23,22 +37,6 @@ class StorageService extends GetxService {
 
   Future<void> clearApiKey() async {
     await storage().write(key: "ApiKey", value: "");
-  }
-
-  Future<StorageService> init() async {
-    final apiKey = await readApiKey();
-
-    // If api key is not yet exist,
-    // or is empty (""),
-    // create a new one with empty values
-    if (apiKey == null || apiKey.isEmpty) {
-      debugPrint('[Storage] Creating a new key: ApiKey with empty value');
-      await writeApiKey("");
-    }
-
-    debugPrint('$runtimeType ready!');
-
-    return this;
   }
 
   /// Determine if user is authenticated

@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/models/auth_model.dart';
-import 'package:khidmatpro_app_vendor/providers/auth_provider.dart';
+import 'package:khidmatpro_app_vendor/providers/base_provider.dart';
 
-class AuthService extends GetxService {
-  final AuthProvider authProvider;
-
-  AuthService(this.authProvider);
-
+class AuthService extends BaseProvider {
   // Login logic
-  Future<Future<Response<AuthModel>>> login(
+  Future<dynamic> login(
       {required String email, required String password}) async {
-    debugPrint("[AuthService.dart] login($email, $password)");
-    return authProvider.login(email: email, password: password);
+    final response =
+        await post("/auth/login", {"email": email, "password": password});
+
+    if (response.isOk) {
+      return AuthModel.fromJson(response.body);
+    } else {
+      throw Exception();
+    }
   }
 }

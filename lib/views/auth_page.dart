@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/controllers/AuthController.dart';
+import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
+import 'package:khidmatpro_app_vendor/models/auth_model.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_button.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
 import 'package:khidmatpro_app_vendor/utilities/text_field_input_decoration.dart';
@@ -50,16 +51,21 @@ class AuthPage extends GetView<AuthController> {
                         controller.password.value = value;
                       },
                       style: TextFieldTextStyle.style(),
-                      decoration: TextFieldInputDecoration.style(text: "Password"),
+                      decoration:
+                          TextFieldInputDecoration.style(text: "Password"),
                     ),
                     const SizedBox(
                       height: 25,
                     ),
-                    AppButton(
-                        text: "Sign In",
-                        onPressed: () {
-                          controller.signIn();
-                        }),
+                    controller.obx(
+                      (state) => AppButton(
+                          text: "Sign In",
+                          onPressed: () {
+                            controller.signIn();
+                          }),
+                      onLoading:
+                          const Center(child: CircularProgressIndicator()),
+                    ),
                     const SizedBox(
                       height: 15,
                     ),
