@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
-import 'package:khidmatpro_app_vendor/models/auth_model.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_button.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
 import 'package:khidmatpro_app_vendor/utilities/text_field_input_decoration.dart';
