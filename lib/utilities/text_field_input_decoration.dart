@@ -7,7 +7,7 @@ class TextFieldInputDecoration {
   static InputDecoration style({
     required String text,
     double size = 15,
-    Color colorInput = colorInput,
+    Color colorInput = AppColors.colorInput,
   }) {
     return InputDecoration(
       labelText: text,

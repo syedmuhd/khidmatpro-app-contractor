@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/base_controller.dart';
 import 'package:khidmatpro_app_vendor/models/auth_model.dart';
 import 'package:khidmatpro_app_vendor/services/auth_service.dart';
@@ -22,16 +22,18 @@ class AuthController extends BaseController with StateMixin<AuthModel> {
   }
 
   void signIn() {
+    Get.offNamed(RouteConstant.home);
+
     change(data, status: RxStatus.loading());
-    authService
-        .login(email: email.value, password: password.value)
-        .then((data) {
-      if (data is AuthModel) {
-        change(data, status: RxStatus.success());
-        debugPrint(data.token);
-      }
-    }).onError((error, stackTrace) {
-      debugPrint("Error: $error");
-    });
+    // authService
+    //     .login(email: email.value, password: password.value)
+    //     .then((data) {
+    //   if (data is AuthModel) {
+    //     change(data, status: RxStatus.success());
+    //     debugPrint(data.token);
+    //   }
+    // }).onError((error, stackTrace) {
+    //   debugPrint("Error: $error");
+    // });
   }
 }

@@ -6,12 +6,16 @@ class AppText extends StatelessWidget {
   final String text;
   final Color color;
   final double size;
+  final TextAlign textAlign;
+  final FontWeight fontWeight;
 
-  const AppText({super.key,
-    required this.text,
-    this.color = colorMain,
-    this.size = 16.0,
-  });
+  const AppText(
+      {super.key,
+      this.text = "Text",
+      this.color = AppColors.colorMain,
+      this.size = 16.0,
+      this.textAlign = TextAlign.left,
+      this.fontWeight = FontWeight.normal});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +24,10 @@ class AppText extends StatelessWidget {
       style: GoogleFonts.openSans(
         textStyle: Theme.of(context).textTheme.displayLarge,
         fontSize: size,
-        fontWeight: FontWeight.bold,
-        color: color
+        fontWeight: fontWeight,
+        color: color,
       ),
+      textAlign: textAlign,
     );
   }
 }

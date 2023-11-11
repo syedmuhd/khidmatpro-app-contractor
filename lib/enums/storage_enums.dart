@@ -10,4 +10,7 @@ class StorageConstantsEnum {
 
   static const StorageConstantsEnum isFirstTime =
       StorageConstantsEnum(StorageConstant.isFirstTime);
+
+  static const StorageConstantsEnum isDarkMode =
+      StorageConstantsEnum(StorageConstant.isDarkMode);
 }

@@ -6,21 +6,11 @@ import 'package:khidmatpro_app_vendor/constants/storage_constant.dart';
 import 'package:khidmatpro_app_vendor/enums/storage_enums.dart';
 
 class StorageService extends GetxService {
-  @override
-  Future<void> onInit() async {
-    initApp();
-    debugPrint('$runtimeType ready!');
-  }
-
-  Future<void> initApp() async {
-    await initAllKeys();
-  }
-
-  // Init all required Storage keys
-  Future<void> initAllKeys() async {
+  Future<StorageService> init() async {
     List<StorageConstantsEnum> keys = [
       const StorageConstantsEnum(StorageConstant.apiKey),
-      const StorageConstantsEnum(StorageConstant.isFirstTime)
+      const StorageConstantsEnum(StorageConstant.isFirstTime),
+      const StorageConstantsEnum(StorageConstant.isDarkMode),
     ];
 
     for (var key in keys) {
@@ -32,10 +22,11 @@ class StorageService extends GetxService {
             '[$runtimeType] Creating a new key: $keyName with empty value');
         await writeToStorage(key, "");
       } else {
-        debugPrint(
-            '[$runtimeType] Key: $keyName exist with value: $value value');
+        debugPrint('[$runtimeType] Key: $keyName exist with value: $value');
       }
     }
+
+    return this;
   }
 
   /// Storage Instance
@@ -69,10 +60,10 @@ class StorageService extends GetxService {
 
   /// Determine if user is authenticated
   Future<bool> isAuthenticated() async {
-    final apiKey = await readFromStorage(
+    final value = await readFromStorage(
         const StorageConstantsEnum(StorageConstant.apiKey));
 
-    if (apiKey == null || apiKey == "") {
+    if (value == null || value == "") {
       return false;
     } else {
       return true;
@@ -90,13 +81,32 @@ class StorageService extends GetxService {
     }
   }
 
+  Future<bool> isDarkMode() async {
+    final value = await readFromStorage(
+        const StorageConstantsEnum(StorageConstant.isDarkMode));
+
+    if (value == "true") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> setWelcomeAsComplete() async {
+    await writeToStorage(StorageConstantsEnum.isFirstTime, "false");
+    return true;
+  }
+
   Future<String> getNextPage() async {
     if (await isFirstTime()) {
+      debugPrint("GOING TO WELCOMEEEEEEEEEEEEEEEE");
       return RouteConstant.welcome;
     } else if (await isAuthenticated()) {
+      debugPrint("GOING TO HOMEEEEEEEEEEEEEE");
       return RouteConstant.home;
     } else {
-      return RouteConstant.error;
+      debugPrint("GOING TO AUTH: ${RouteConstant.auth}");
+      return RouteConstant.auth;
     }
   }
 }

@@ -26,12 +26,8 @@ class AppButton extends StatelessWidget {
         height: height,
         child: ElevatedButton(
           onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: colorMain,
-          ),
-          child: const AppText(
-            text: "Sign In",
-            color: colorWhite,
+          child: AppText(
+            text: text,
           ),
         ),
       ),

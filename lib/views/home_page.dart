@@ -1,83 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/utilities/Base/base_app_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/Base/base_app_bottom_navigation_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/Base/base_app_drawer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final PageController _pageController = PageController();
+  final RxInt _currentPage = 0.obs;
+  final GlobalKey<ScaffoldState> _homePageKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.menu),
-        title: const Text('KhidmatPro'),
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Implement your settings functionality here
-            },
-          ),
+      key: _homePageKey,
+      appBar: BaseAppBar(homePageKey: _homePageKey),
+      drawer: const BaseAppDrawer(),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          _currentPage.value = index;
+        },
+        children: const [
+          Center(child: Text('Home')),
+          Center(child: Text('Quotes')),
+          Center(child: Text('Schedules')),
         ],
       ),
-      body: const Center(
-        child: Text('Hello World'),
+      bottomNavigationBar: BaseAppBottomNavigationBar(
+        pageController: _pageController,
+        onPageChanged: (index) {
+          _currentPage.value = index;
+        },
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          height: 120.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.home_filled),
-                    onPressed: () {
-                      // Implement the functionality for the home icon here
-                    },
-                  ),
-                  Text('Home'), // Add a text widget for the icon title
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.safety_check),
-                    onPressed: () {
-                      // Implement the functionality for the home icon here
-                    },
-                  ),
-                  Text('Services'), // Add a text widget for the icon title
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.task_alt_sharp),
-                    onPressed: () {
-                      // Implement the functionality for the settings icon here
-                    },
-                  ),
-                  Text('Profile'), // Add a text widget for the icon title
-                ],
-              ),
-            ],
-
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment Counter',
-        child: const Icon(Icons.sos_sharp), // Use a different icon, e.g., Icons.add
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
-
   }
 }
