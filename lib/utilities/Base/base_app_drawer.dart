@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
 import 'package:unicons/unicons.dart';
@@ -12,8 +14,16 @@ class BaseAppDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            color: AppColors.colorDrawerHeader,
-            height: 110, // Set the desired height here
+            decoration: const BoxDecoration(
+              color: AppColors.colorMain,
+              border: Border(
+                bottom: BorderSide(
+                  color: AppColors.colorDrawerHeaderBorderBottom,
+                  width: 1,
+                ),
+              ),
+            ),
+            height: 110,
             child: const Padding(
               padding: EdgeInsets.only(left: 20, top: 30),
               child: Row(
@@ -35,47 +45,73 @@ class BaseAppDrawer extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20, top: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 25),
             child: Column(
               children: [
                 /// Settings
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(UniconsLine.cog),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    AppText(
-                      text: "Settings",
-                      color: AppColors.appBarTextPro,
-                      size: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ],
+                InkWell(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(UniconsLine.cog),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      AppText(
+                        text: "Settings",
+                        color: AppColors.appBarTextPro,
+                        size: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Get.toNamed(RouteConstant.settings);
+                  },
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
+
                 /// Help
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(UniconsLine.question_circle),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    AppText(
-                      text: "Help",
-                      color: AppColors.appBarTextPro,
-                      size: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ],
-                )
+                InkWell(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(UniconsLine.question_circle),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      const AppText(
+                        text: "Help",
+                        color: AppColors.appBarTextPro,
+                        size: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Get.toNamed(RouteConstant.settings);
+                  },
+                ),
               ],
             ),
           ),
-          // Add more drawer items as needed
+          // This is the button that should appear at the bottom
+          const Expanded(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: AppText(
+                text: "Powered by SoftwareHub",
+                color: Colors.black,
+                size: 14,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          )
         ],
       ),
     );

@@ -13,4 +13,13 @@ class StorageConstantsEnum {
 
   static const StorageConstantsEnum isDarkMode =
       StorageConstantsEnum(StorageConstant.isDarkMode);
+
+  static const StorageConstantsEnum currentLocale =
+      StorageConstantsEnum(StorageConstant.currentLocale);
+
+  static const StorageConstantsEnum localeMY =
+      StorageConstantsEnum(StorageConstant.localeMY);
+
+  static const StorageConstantsEnum localeEN =
+      StorageConstantsEnum(StorageConstant.localeEN);
 }

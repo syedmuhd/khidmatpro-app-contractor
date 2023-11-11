@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/constants/welcome_constant.dart';
-import 'package:khidmatpro_app_vendor/controllers/setting_controller.dart';
+import 'package:khidmatpro_app_vendor/controllers/settings_controller.dart';
 import 'package:khidmatpro_app_vendor/controllers/welcome_controller.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_button.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
@@ -10,7 +10,7 @@ import 'package:lottie/lottie.dart';
 class WelcomePage extends GetView<WelcomeController> {
   WelcomePage({super.key});
 
-  final SettingController settingController = Get.find();
+  final SettingsController settingController = Get.find();
 
   @override
   Widget build(BuildContext context) {

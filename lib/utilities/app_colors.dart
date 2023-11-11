@@ -9,5 +9,9 @@ class AppColors {
   static const Color appBarTextKhidmat = Color.fromRGBO(113, 112, 110, 1);
   static const Color appBarTextPro = Color.fromRGBO(8, 7, 5, 1);
 
-  static const Color colorDrawerHeader = Color.fromRGBO(244, 243, 239, 1);
+  static const Color colorBackgroundMain = Color.fromRGBO(244, 243, 239, 1);
+  static const Color colorDrawerHeaderBorderBottom = Color.fromRGBO(124, 123, 119, 1);
+
+  static const Color colorTextHint = Color.fromRGBO(67, 66, 64, 1);
+
 }

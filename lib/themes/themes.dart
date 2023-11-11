@@ -6,7 +6,7 @@ class Themes {
   static final light = ThemeData(
     brightness: Brightness.light,
     primaryColor: Colors.green,
-    scaffoldBackgroundColor: AppColors.colorMain,
+    scaffoldBackgroundColor: AppColors.colorBackgroundMain,
     buttonTheme: const ButtonThemeData(
       buttonColor: Colors.blue,
       textTheme: ButtonTextTheme.primary,

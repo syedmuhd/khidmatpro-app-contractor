@@ -21,6 +21,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             homePageKey.currentState?.openDrawer(); // Open the drawer
           },
         ),
+        centerTitle: true,
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -28,7 +29,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
               text: "Khidmat",
               color: AppColors.appBarTextKhidmat,
               size: 18,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
             ),
             AppText(
               text: "Pro",
@@ -38,7 +39,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
         ),
-        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(

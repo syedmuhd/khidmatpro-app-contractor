@@ -11,6 +11,7 @@ class StorageService extends GetxService {
       const StorageConstantsEnum(StorageConstant.apiKey),
       const StorageConstantsEnum(StorageConstant.isFirstTime),
       const StorageConstantsEnum(StorageConstant.isDarkMode),
+      const StorageConstantsEnum(StorageConstant.currentLocale),
     ];
 
     for (var key in keys) {
@@ -18,11 +19,28 @@ class StorageService extends GetxService {
       String keyName = key.value;
 
       if (value == null) {
-        debugPrint(
-            '[$runtimeType] Creating a new key: $keyName with empty value');
-        await writeToStorage(key, "");
+        if (keyName == StorageConstant.currentLocale) {
+          debugPrint(
+              '[$runtimeType] Creating a new key: $keyName with ${StorageConstant.localeMY} value');
+          await writeToStorage(key, StorageConstant.localeMY);
+        } else {
+          debugPrint(
+              '[$runtimeType] Creating a new key: $keyName with empty value');
+          await writeToStorage(key, "");
+        }
       } else {
         debugPrint('[$runtimeType] Key: $keyName exist with value: $value');
+        if (keyName == StorageConstant.currentLocale) {
+          if (value == StorageConstant.localeMY) {
+            debugPrint("Setting up locale as: my_MY");
+            // settingsController.currentLocaleIndex.value = 0;
+            Get.updateLocale(const Locale('my', 'MY'));
+          } else {
+            debugPrint("Setting up locale as: en_US");
+            // settingsController.currentLocaleIndex.value = 1;
+            Get.updateLocale(const Locale('en', 'US'));
+          }
+        }
       }
     }
 
@@ -92,6 +110,19 @@ class StorageService extends GetxService {
     }
   }
 
+  Future<String> getCurrentLocale() async {
+    final value = await readFromStorage(
+        const StorageConstantsEnum(StorageConstant.currentLocale));
+
+    return value ?? StorageConstant.localeMY;
+  }
+
+  Future<bool> setLocale(StorageConstantsEnum key, String value) async {
+    debugPrint("Locale set to $value");
+    await writeToStorage(key, value);
+    return true;
+  }
+
   Future<bool> setWelcomeAsComplete() async {
     await writeToStorage(StorageConstantsEnum.isFirstTime, "false");
     return true;
@@ -99,13 +130,10 @@ class StorageService extends GetxService {
 
   Future<String> getNextPage() async {
     if (await isFirstTime()) {
-      debugPrint("GOING TO WELCOMEEEEEEEEEEEEEEEE");
       return RouteConstant.welcome;
     } else if (await isAuthenticated()) {
-      debugPrint("GOING TO HOMEEEEEEEEEEEEEE");
       return RouteConstant.home;
     } else {
-      debugPrint("GOING TO AUTH: ${RouteConstant.auth}");
       return RouteConstant.auth;
     }
   }

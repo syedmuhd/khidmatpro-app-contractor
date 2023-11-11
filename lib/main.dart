@@ -4,13 +4,16 @@ import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/bindings/auth_bindings.dart';
 import 'package:khidmatpro_app_vendor/bindings/welcome_bindings.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
-import 'package:khidmatpro_app_vendor/controllers/setting_controller.dart';
+import 'package:khidmatpro_app_vendor/controllers/settings_controller.dart';
+import 'package:khidmatpro_app_vendor/services/locale_service.dart';
 import 'package:khidmatpro_app_vendor/services/storage_service.dart';
 import 'package:khidmatpro_app_vendor/services/theme_service.dart';
 import 'package:khidmatpro_app_vendor/themes/themes.dart';
+import 'package:khidmatpro_app_vendor/utilities/i18n/messages.dart';
 import 'package:khidmatpro_app_vendor/views/init_page.dart';
 import 'package:khidmatpro_app_vendor/views/auth_page.dart';
 import 'package:khidmatpro_app_vendor/views/home_page.dart';
+import 'package:khidmatpro_app_vendor/views/settings_page.dart';
 import 'package:khidmatpro_app_vendor/views/welcome_page.dart';
 
 Future<void> main() async {
@@ -34,6 +37,7 @@ Future<void> main() async {
       theme: Themes.light,
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
+      translations: Messages(),
       getPages: [
         GetPage(
           name: RouteConstant.init,
@@ -53,6 +57,10 @@ Future<void> main() async {
           page: () => const AuthPage(),
           binding: AuthBindings(),
         ),
+        GetPage(
+          name: RouteConstant.settings,
+          page: () => SettingsPage(),
+        ),
       ],
     ),
   );
@@ -61,6 +69,7 @@ Future<void> main() async {
 /// Initialize services in order
 Future<void> initializeServices() async {
   await Get.putAsync(() => StorageService().init());
-  Get.lazyPut(() => SettingController());
+  await Get.putAsync(() => LocaleService().init());
   await Get.putAsync(() => ThemeService().init());
+  Get.lazyPut(() => SettingsController());
 }
