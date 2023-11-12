@@ -1,118 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_button.dart';
+import 'package:khidmatpro_app_vendor/utilities/base/base_app_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
-import 'package:khidmatpro_app_vendor/utilities/text_field_input_decoration.dart';
-import 'package:khidmatpro_app_vendor/utilities/text_field_text_style.dart';
 import 'package:lottie/lottie.dart';
 
-class AuthPage extends GetView<AuthController> {
-  const AuthPage({super.key});
+class AuthPage extends StatelessWidget {
+  AuthPage({super.key});
+
+  final GlobalKey<ScaffoldState> _homePageKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      key: _homePageKey,
+      appBar: BaseAppBar(
+        homePageKey: _homePageKey,
+        showMenuIcon: false,
+        showNotificationIcon: false,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15, top: 15),
-                child: Lottie.asset('assets/lottie/sign_in.json'),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Column(
-                  textDirection: TextDirection.ltr,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText(text: "Log In", size: 20),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    TextField(
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        controller.email.value = value;
-                      },
-                      style: TextFieldTextStyle.style(),
-                      decoration: TextFieldInputDecoration.style(text: "Email"),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    TextField(
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        controller.password.value = value;
-                      },
-                      style: TextFieldTextStyle.style(),
-                      decoration:
-                          TextFieldInputDecoration.style(text: "Password"),
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    controller.obx(
-                      (state) => AppButton(
-                          text: "Sign In",
-                          onPressed: () {
-                            controller.signIn();
-                          }),
-                      onLoading:
-                          const Center(child: CircularProgressIndicator()),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          'Don’t have an account?',
-                          style: TextStyle(
-                            color: Color(0xFF837E93),
-                            fontSize: 13,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 2.5,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: const Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              color: Color(0xFF755DC1),
-                              fontSize: 13,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const Text(
-                      'Forget Password?',
-                      style: TextStyle(
-                        color: Color(0xFF755DC1),
-                        fontSize: 13,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15, top: 15),
+              child: Lottie.asset('assets/lottie/sign_in.json'),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: AppButton(
+                  onPressed: () => Get.toNamed(RouteConstant.login),
+                  text: "Log Masuk"),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: AppButton(
+                  onPressed: () {}, text: "Daftar sebagai Contractor"),
+            ),
+          ]),
         ),
       ),
     );

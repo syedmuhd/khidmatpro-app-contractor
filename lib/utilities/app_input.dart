@@ -17,7 +17,7 @@ class AppInput extends StatelessWidget {
     return TextField(
       textAlign: TextAlign.left,
       style: TextStyle(
-        color: colorInput,
+        color: AppColors.colorInput,
         fontSize: size,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
@@ -25,7 +25,7 @@ class AppInput extends StatelessWidget {
       decoration: InputDecoration(
         labelText: text,
         labelStyle: GoogleFonts.openSans(
-          color: colorInput,
+          color: AppColors.colorInput,
           fontSize: size,
           fontWeight: FontWeight.normal,
         ),
@@ -33,14 +33,14 @@ class AppInput extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
             width: 1,
-            color: colorInput,
+            color: AppColors.colorInput,
           ),
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
             width: 1,
-            color: colorInput,
+            color: AppColors.colorInput,
           ),
         ),
       ),

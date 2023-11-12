@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/controllers/settings_controller.dart';
 import 'package:khidmatpro_app_vendor/services/locale_service.dart';
 import 'package:khidmatpro_app_vendor/services/theme_service.dart';
-import 'package:khidmatpro_app_vendor/utilities/Base/base_page_app_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/base/base_page_app_bar.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:unicons/unicons.dart';
 
-class SettingsPage extends GetView<SettingsController> {
+class SettingsPage extends GetView {
   SettingsPage({Key? key}) : super(key: key);
   final GlobalKey<ScaffoldState> _pageKey = GlobalKey<ScaffoldState>();
 
@@ -70,7 +69,7 @@ class SettingsPage extends GetView<SettingsController> {
                       [Colors.blue]
                     ],
                     onToggle: (index) {
-                      controller.switchLocale(index!);
+                      localeService.setLocale(index!);
                     },
                   ),
                 ),
@@ -101,8 +100,8 @@ class SettingsPage extends GetView<SettingsController> {
                       [Colors.blue],
                       [Colors.blue]
                     ],
-                    onToggle: (value) {
-                      controller.toggleTheme();
+                    onToggle: (index) {
+                      themeService.setTheme(index!);
                     },
                   ),
                 ),

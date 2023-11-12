@@ -10,7 +10,10 @@ class InitPage extends StatelessWidget {
     StorageService storageService = Get.find();
 
     return FutureBuilder(
+      // Based on this output
       future: storageService.getNextPage(),
+
+      // What to do with the screen
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Display a loading indicator while waiting

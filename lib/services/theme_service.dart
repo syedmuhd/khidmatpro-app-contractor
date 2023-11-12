@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/controllers/settings_controller.dart';
+import 'package:khidmatpro_app_vendor/enums/storage_enums.dart';
 import 'package:khidmatpro_app_vendor/services/storage_service.dart';
 
 class ThemeService extends GetxService {
@@ -20,6 +20,18 @@ class ThemeService extends GetxService {
     });
 
     return this;
+  }
+
+  void setTheme(int index) async {
+    if (index == 0) {
+      currentThemeIndex.value = 0;
+      Get.changeTheme(ThemeData.light());
+      storageService.writeToStorage(StorageConstantsEnum.isDarkMode, "false");
+    } else {
+      currentThemeIndex.value = 1;
+      Get.changeTheme(ThemeData.dark());
+      storageService.writeToStorage(StorageConstantsEnum.isDarkMode, "true");
+    }
   }
 
   void setCurrentTheme() async {

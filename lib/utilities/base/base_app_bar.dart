@@ -5,8 +5,15 @@ import 'package:unicons/unicons.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> homePageKey;
+  final bool showMenuIcon;
+  final bool showNotificationIcon;
 
-  const BaseAppBar({Key? key, required this.homePageKey}) : super(key: key);
+  const BaseAppBar({
+    Key? key,
+    required this.homePageKey,
+    this.showMenuIcon = true,
+    this.showNotificationIcon = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +22,14 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         elevation: 0.0,
         backgroundColor: AppColors.colorMain,
-        leading: IconButton(
-          icon: const Icon(UniconsLine.bars, color: AppColors.colorIcon),
-          onPressed: () {
-            homePageKey.currentState?.openDrawer(); // Open the drawer
-          },
-        ),
+        leading: showMenuIcon
+            ? IconButton(
+                icon: const Icon(UniconsLine.bars, color: AppColors.colorIcon),
+                onPressed: () {
+                  homePageKey.currentState?.openDrawer(); // Open the drawer
+                },
+              )
+            : null,
         centerTitle: true,
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,17 +48,19 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              UniconsLine.bell,
-              color: AppColors.colorIcon,
-            ),
-            onPressed: () {
-              // Implement your notifications functionality here
-            },
-          ),
-        ],
+        actions: showNotificationIcon
+            ? [
+                IconButton(
+                  icon: const Icon(
+                    UniconsLine.bell,
+                    color: AppColors.colorIcon,
+                  ),
+                  onPressed: () {
+                    // Implement your notifications functionality here
+                  },
+                ),
+              ]
+            : null,
       ),
     );
   }

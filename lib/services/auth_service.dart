@@ -9,6 +9,7 @@ class AuthService extends BaseProvider {
         await post("/auth/login", {"email": email, "password": password});
 
     if (response.isOk) {
+      // Convert api response (json object/array) into Dart Object
       return AuthModel.fromJson(response.body);
     } else {
       throw Exception();

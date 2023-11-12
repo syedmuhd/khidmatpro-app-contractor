@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
 
 class AppButton extends StatelessWidget {
@@ -20,7 +18,6 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: SizedBox(
         width: width,
         height: height,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khidmatpro_app_vendor/utilities/Base/base_page_app_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/base/base_page_app_bar.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 
 class SettingsPage extends StatelessWidget {

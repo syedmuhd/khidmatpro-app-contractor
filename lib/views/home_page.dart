@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/utilities/Base/base_app_bar.dart';
-import 'package:khidmatpro_app_vendor/utilities/Base/base_app_bottom_navigation_bar.dart';
-import 'package:khidmatpro_app_vendor/utilities/Base/base_app_drawer.dart';
+import 'package:khidmatpro_app_vendor/utilities/base/base_app_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/base/base_app_bottom_navigation_bar.dart';
+import 'package:khidmatpro_app_vendor/utilities/base/base_app_drawer.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
