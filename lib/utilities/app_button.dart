@@ -12,12 +12,13 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.text,
     this.width = double.maxFinite,
-    this.height = 56,
+    this.height = 60,
   });
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
+      borderRadius: BorderRadius.circular(7),
       child: SizedBox(
         width: width,
         height: height,
@@ -25,6 +26,7 @@ class AppButton extends StatelessWidget {
           onPressed: onPressed,
           child: AppText(
             text: text,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

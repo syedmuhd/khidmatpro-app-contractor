@@ -4,16 +4,16 @@ import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 
 class AppText extends StatelessWidget {
   final String text;
-  final Color color;
   final double size;
   final TextAlign textAlign;
   final FontWeight fontWeight;
+  final Color color;
 
   const AppText(
       {super.key,
       this.text = "Text",
-      this.color = AppColors.colorMain,
       this.size = 16.0,
+      this.color = AppColors.text,
       this.textAlign = TextAlign.left,
       this.fontWeight = FontWeight.normal});
 
@@ -21,11 +21,10 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.openSans(
-        textStyle: Theme.of(context).textTheme.displayLarge,
+      style: TextStyle(
+        color: color,
         fontSize: size,
         fontWeight: fontWeight,
-        color: color,
       ),
       textAlign: textAlign,
     );

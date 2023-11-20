@@ -32,12 +32,8 @@ class StorageService extends GetxService {
         debugPrint('[$runtimeType] Key: $keyName exist with value: $value');
         if (keyName == StorageConstant.currentLocale) {
           if (value == StorageConstant.localeMY) {
-            debugPrint("Setting up locale as: my_MY");
-            // settingsController.currentLocaleIndex.value = 0;
             Get.updateLocale(const Locale('my', 'MY'));
           } else {
-            debugPrint("Setting up locale as: en_US");
-            // settingsController.currentLocaleIndex.value = 1;
             Get.updateLocale(const Locale('en', 'US'));
           }
         }
@@ -130,7 +126,7 @@ class StorageService extends GetxService {
 
   Future<String> getNextPage() async {
     if (await isFirstTime()) {
-      return RouteConstant.welcome;
+      return RouteConstant.auth;
     } else if (await isAuthenticated()) {
       return RouteConstant.home;
     } else {

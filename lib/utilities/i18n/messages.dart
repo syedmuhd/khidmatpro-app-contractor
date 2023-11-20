@@ -8,12 +8,16 @@ class Messages extends Translations {
           'theme_selection': 'Theme',
           'theme_selection_light': 'Light',
           'theme_selection_dark': 'Dark',
+          'sign_in': 'Sign In',
+          'register': 'Register',
         },
         'my_MY': {
           'app_language': 'Pilihan bahasa',
           'theme_selection': 'Tema paparan',
           'theme_selection_light': 'Cerah',
           'theme_selection_dark': 'Gelap',
+          'sign_in': 'Log Masuk',
+          'register': 'Daftar',
         }
       };
 }

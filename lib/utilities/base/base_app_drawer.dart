@@ -15,10 +15,8 @@ class BaseAppDrawer extends StatelessWidget {
         children: [
           Container(
             decoration: const BoxDecoration(
-              color: AppColors.colorMain,
               border: Border(
                 bottom: BorderSide(
-                  color: AppColors.colorDrawerHeaderBorderBottom,
                   width: 1,
                 ),
               ),
@@ -31,13 +29,11 @@ class BaseAppDrawer extends StatelessWidget {
                 children: [
                   AppText(
                     text: "Khidmat",
-                    color: AppColors.appBarTextKhidmat,
                     size: 20,
                     fontWeight: FontWeight.w400,
                   ),
                   AppText(
                     text: "Pro",
-                    color: AppColors.appBarTextPro,
                     size: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -60,7 +56,6 @@ class BaseAppDrawer extends StatelessWidget {
                       ),
                       AppText(
                         text: "Settings",
-                        color: AppColors.appBarTextPro,
                         size: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -85,7 +80,6 @@ class BaseAppDrawer extends StatelessWidget {
                       ),
                       const AppText(
                         text: "Help",
-                        color: AppColors.appBarTextPro,
                         size: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -104,7 +98,6 @@ class BaseAppDrawer extends StatelessWidget {
               alignment: FractionalOffset.bottomCenter,
               child: AppText(
                 text: "Powered by SoftwareHub",
-                color: Colors.black,
                 size: 14,
               ),
             ),

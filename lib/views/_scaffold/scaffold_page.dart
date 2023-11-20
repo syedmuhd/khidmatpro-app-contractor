@@ -9,7 +9,6 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.colorBackgroundMain,
       appBar: BasePageAppBar(homePageKey: _pageKey),
       body: const SingleChildScrollView(
         child: Center(

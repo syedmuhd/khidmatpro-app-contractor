@@ -13,17 +13,14 @@ class BasePageAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: AppColors.colorBackgroundMain,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
-        color: AppColors.appBarTextPro,
         onPressed: () {
           Get.back(); // Navigate back when the back arrow is tapped
         },
       ),
       title: const AppText(
         text: "Settings",
-        color: AppColors.appBarTextPro,
         fontWeight: FontWeight.w500,
         size: 18,
       ),

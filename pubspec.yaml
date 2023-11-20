@@ -41,7 +41,7 @@ dependencies:
   lottie: ^2.7.0
   google_fonts: ^6.1.0
   unicons: ^2.1.1
-  toggle_switch: ^2.1.0
+  bottom_drawer: ^0.0.5
 
 dev_dependencies:
   flutter_test:

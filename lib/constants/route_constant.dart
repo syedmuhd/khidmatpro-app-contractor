@@ -5,6 +5,7 @@ class RouteConstant {
   static const String auth = "/auth";
   static const String settings = "/settings";
   static const String login = "/login";
+  static const String register = "/register";
 
   static const String error = "/error";
 }

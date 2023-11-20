@@ -7,61 +7,54 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> homePageKey;
   final bool showMenuIcon;
   final bool showNotificationIcon;
+  final bool centerTitle;
 
   const BaseAppBar({
     Key? key,
     required this.homePageKey,
     this.showMenuIcon = true,
     this.showNotificationIcon = true,
+    this.centerTitle = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8, top: 14, right: 5),
-      child: AppBar(
-        elevation: 0.0,
-        backgroundColor: AppColors.colorMain,
-        leading: showMenuIcon
-            ? IconButton(
-                icon: const Icon(UniconsLine.bars, color: AppColors.colorIcon),
-                onPressed: () {
-                  homePageKey.currentState?.openDrawer(); // Open the drawer
-                },
-              )
-            : null,
-        centerTitle: true,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppText(
-              text: "Khidmat",
-              color: AppColors.appBarTextKhidmat,
-              size: 18,
-              fontWeight: FontWeight.w600,
-            ),
-            AppText(
-              text: "Pro",
-              color: AppColors.appBarTextPro,
-              size: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ],
-        ),
-        actions: showNotificationIcon
-            ? [
-                IconButton(
-                  icon: const Icon(
-                    UniconsLine.bell,
-                    color: AppColors.colorIcon,
-                  ),
-                  onPressed: () {
-                    // Implement your notifications functionality here
-                  },
-                ),
-              ]
-            : null,
+    return AppBar(
+      elevation: 0.0,
+      leading: showMenuIcon
+          ? IconButton(
+              icon: const Icon(UniconsLine.bars),
+              onPressed: () {
+                homePageKey.currentState?.openDrawer(); // Open the drawer
+              },
+            )
+          : null,
+      centerTitle: centerTitle,
+      title: const Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          AppText(
+            text: "Khidmat",
+            size: 18,
+            fontWeight: FontWeight.w600,
+          ),
+          AppText(
+            text: "Pro",
+            size: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ],
       ),
+      actions: showNotificationIcon
+          ? [
+              IconButton(
+                icon: const Icon(UniconsLine.bell),
+                onPressed: () {
+                  // Implement your notifications functionality here
+                },
+              ),
+            ]
+          : null,
     );
   }
 

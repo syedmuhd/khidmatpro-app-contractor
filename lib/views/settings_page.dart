@@ -5,7 +5,6 @@ import 'package:khidmatpro_app_vendor/services/theme_service.dart';
 import 'package:khidmatpro_app_vendor/utilities/base/base_page_app_bar.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 import 'package:unicons/unicons.dart';
 
 class SettingsPage extends GetView {
@@ -20,7 +19,6 @@ class SettingsPage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.colorBackgroundMain,
       appBar: BasePageAppBar(homePageKey: _pageKey),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,7 +34,6 @@ class SettingsPage extends GetView {
                   padding: EdgeInsets.only(left: 20),
                   child: AppText(
                     text: "Appearance",
-                    color: Colors.grey,
                     size: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -51,28 +48,27 @@ class SettingsPage extends GetView {
                 leading: const Icon(UniconsLine.language),
                 title: AppText(
                   text: "app_language".tr,
-                  color: AppColors.appBarTextPro,
                   fontWeight: FontWeight.w500,
                 ),
-                trailing: Obx(
-                  () => ToggleSwitch(
-                    minWidth: switchLength,
-                    initialLabelIndex: localeService.currentLocaleIndex.value,
-                    cornerRadius: 20.0,
-                    activeFgColor: Colors.white,
-                    inactiveBgColor: Colors.grey,
-                    inactiveFgColor: Colors.white,
-                    totalSwitches: 2,
-                    labels: const ['MY', 'EN'],
-                    activeBgColors: const [
-                      [Colors.blue],
-                      [Colors.blue]
-                    ],
-                    onToggle: (index) {
-                      localeService.setLocale(index!);
-                    },
-                  ),
-                ),
+                // trailing: Obx(
+                //   () => ToggleSwitch(
+                //     minWidth: switchLength,
+                //     initialLabelIndex: localeService.currentLocaleIndex.value,
+                //     cornerRadius: 20.0,
+                //     activeFgColor: Colors.white,
+                //     inactiveBgColor: Colors.grey,
+                //     inactiveFgColor: Colors.white,
+                //     totalSwitches: 2,
+                //     labels: const ['MY', 'EN'],
+                //     activeBgColors: const [
+                //       [Colors.blue],
+                //       [Colors.blue]
+                //     ],
+                //     onToggle: (index) {
+                //       localeService.setLocale(index!);
+                //     },
+                //   ),
+                // ),
               ),
 
               /// Theme
@@ -80,31 +76,30 @@ class SettingsPage extends GetView {
                 leading: const Icon(UniconsLine.adjust_circle),
                 title: AppText(
                   text: "theme_selection".tr,
-                  color: AppColors.appBarTextPro,
                   fontWeight: FontWeight.w500,
                 ),
-                trailing: Obx(
-                  () => ToggleSwitch(
-                    minWidth: switchLength,
-                    initialLabelIndex: themeService.currentThemeIndex.value,
-                    cornerRadius: 20.0,
-                    activeFgColor: Colors.white,
-                    inactiveBgColor: Colors.grey,
-                    inactiveFgColor: Colors.white,
-                    totalSwitches: 2,
-                    labels: [
-                      'theme_selection_light'.tr,
-                      'theme_selection_dark'.tr
-                    ],
-                    activeBgColors: const [
-                      [Colors.blue],
-                      [Colors.blue]
-                    ],
-                    onToggle: (index) {
-                      themeService.setTheme(index!);
-                    },
-                  ),
-                ),
+                // trailing: Obx(
+                //   () => ToggleSwitch(
+                //     minWidth: switchLength,
+                //     initialLabelIndex: themeService.currentThemeIndex.value,
+                //     cornerRadius: 20.0,
+                //     activeFgColor: Colors.white,
+                //     inactiveBgColor: Colors.grey,
+                //     inactiveFgColor: Colors.white,
+                //     totalSwitches: 2,
+                //     labels: [
+                //       'theme_selection_light'.tr,
+                //       'theme_selection_dark'.tr
+                //     ],
+                //     activeBgColors: const [
+                //       [Colors.blue],
+                //       [Colors.blue]
+                //     ],
+                //     onToggle: (index) {
+                //       themeService.setTheme(index!);
+                //     },
+                //   ),
+                // ),
               ),
             ],
           ),

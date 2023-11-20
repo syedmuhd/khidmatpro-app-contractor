@@ -22,19 +22,19 @@ class AuthController extends BaseController with StateMixin<AuthModel> {
   }
 
   void signIn() {
-    // Get.offNamed(RouteConstant.home);
+    Get.offNamed(RouteConstant.home);
 
     // change(data, status: RxStatus.loading());
-    authService
-        .login(email: email.value, password: password.value)
-        .then((data) {
-      if (data is AuthModel) {
-        data.
-        change(data, status: RxStatus.success());
-        debugPrint(data.token);
-      }
-    }).onError((error, stackTrace) {
-      debugPrint("Error: $error");
-    });
+    // authService
+    //     .login(email: email.value, password: password.value)
+    //     .then((data) {
+    //   if (data is AuthModel) {
+    //     data.
+    //     change(data, status: RxStatus.success());
+    //     debugPrint(data.token);
+    //   }
+    // }).onError((error, stackTrace) {
+    //   debugPrint("Error: $error");
+    // });
   }
 }

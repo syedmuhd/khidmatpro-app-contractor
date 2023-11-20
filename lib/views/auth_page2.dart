@@ -13,7 +13,6 @@ class AuthPage2 extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -73,7 +72,6 @@ class AuthPage2 extends GetView<AuthController> {
                         const Text(
                           'Don’t have an account?',
                           style: TextStyle(
-                            color: Color(0xFF837E93),
                             fontSize: 13,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
@@ -87,7 +85,6 @@ class AuthPage2 extends GetView<AuthController> {
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(
-                              color: Color(0xFF755DC1),
                               fontSize: 13,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
