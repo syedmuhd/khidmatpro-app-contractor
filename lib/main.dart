@@ -14,6 +14,7 @@ import 'package:khidmatpro_app_vendor/services/storage_service.dart';
 import 'package:khidmatpro_app_vendor/utilities/i18n/messages.dart';
 import 'package:khidmatpro_app_vendor/views/init_page.dart';
 import 'package:khidmatpro_app_vendor/views/v2/auth_page.dart';
+import 'package:khidmatpro_app_vendor/views/v2/onboarding_1.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +38,7 @@ Future<void> main() async {
       getPages: [
         GetPage(
           name: RouteConstant.init,
-          page: () => const InitPage(),
+          page: () => const Onboarding1(),
         ),
         GetPage(
           name: RouteConstant.auth,
