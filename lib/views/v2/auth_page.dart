@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:get/get.dart';
-import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:khidmatpro_app_vendor/views/v2/auth_drawer.dart';
 
 class AuthPage extends StatelessWidget {
   AuthPage({Key? key});
-
-  BottomDrawerController controller = BottomDrawerController();
 
   @override
   Widget build(BuildContext context) {
