@@ -42,6 +42,15 @@ dependencies:
   google_fonts: ^6.1.0
   unicons: ^2.1.1
   dropdown_button2: ^2.3.9
+  flutter_map: ^6.0.1
+  latlong2: ^0.9.0
+  url_launcher: ^6.2.1
+  permission_handler: ^11.0.1
+  cached_network_image: ^3.3.0
+  chips_choice: ^3.0.1
+  shimmer: ^3.0.0
+  geolocator: ^10.1.0
+  flutter_native_splash: ^2.3.6
 
 dev_dependencies:
   flutter_test:

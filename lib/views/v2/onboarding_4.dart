@@ -1,9 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:unicons/unicons.dart';
 
-class Onboarding2 extends StatelessWidget {
-  const Onboarding2({super.key});
+class Onboarding4 extends StatelessWidget {
+  const Onboarding4({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +41,9 @@ class Onboarding2 extends StatelessWidget {
                             width: 20,
                           ),
                           const Text(
-                            "Tell us about yourself",
+                            "What services do you offer?",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -57,7 +56,7 @@ class Onboarding2 extends StatelessWidget {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(60))),
+                                BorderRadius.all(Radius.circular(60))),
                             hintText: 'Full name',
                             contentPadding: EdgeInsets.all(18),
                           ),
@@ -81,14 +80,14 @@ class Onboarding2 extends StatelessWidget {
                               'Company',
                             ]
                                 .map((String item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ))
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ))
                                 .toList(),
                             value: selectedValue,
                             onChanged: (String? value) {},
@@ -96,7 +95,7 @@ class Onboarding2 extends StatelessWidget {
                               height: 50,
                               width: 140,
                               padding:
-                                  const EdgeInsets.only(left: 14, right: 14),
+                              const EdgeInsets.only(left: 14, right: 14),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 border: Border.all(
@@ -119,7 +118,7 @@ class Onboarding2 extends StatelessWidget {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(60))),
+                                BorderRadius.all(Radius.circular(60))),
                             hintText: 'SSM Number',
                             contentPadding: EdgeInsets.all(18),
                           ),

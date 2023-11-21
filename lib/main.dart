@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:khidmatpro_app_vendor/bindings/login_bindings.dart';
+import 'package:khidmatpro_app_vendor/bindings/onboarding3_bindings.dart';
 import 'package:khidmatpro_app_vendor/bindings/welcome_bindings.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/services/locale_service.dart';
@@ -16,6 +17,8 @@ import 'package:khidmatpro_app_vendor/views/init_page.dart';
 import 'package:khidmatpro_app_vendor/views/v2/auth_page.dart';
 import 'package:khidmatpro_app_vendor/views/v2/onboarding_1.dart';
 import 'package:khidmatpro_app_vendor/views/v2/onboarding_2.dart';
+import 'package:khidmatpro_app_vendor/views/v2/onboarding_3.dart';
+import 'package:khidmatpro_app_vendor/views/v2/onboarding_4.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +42,8 @@ Future<void> main() async {
       getPages: [
         GetPage(
           name: RouteConstant.init,
-          page: () => const Onboarding2(),
+          page: () => Onboarding4(),
+          // binding: Onboarding3Binding()
         ),
         GetPage(
           name: RouteConstant.auth,
