@@ -47,7 +47,7 @@ dependencies:
   url_launcher: ^6.2.1
   permission_handler: ^11.0.1
   cached_network_image: ^3.3.0
-  chips_choice: ^3.0.1
+  choice: ^2.3.0
   shimmer: ^3.0.0
   geolocator: ^10.1.0
   flutter_native_splash: ^2.3.6
@@ -80,6 +80,9 @@ flutter:
     - assets/lottie/welcome/one.json
     - assets/lottie/welcome/two.json
     - assets/lottie/welcome/three.json
+    - assets/images/backgrounds/1.jpg
+    - assets/images/backgrounds/2.jpg
+    - assets/images/backgrounds/3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

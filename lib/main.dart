@@ -42,7 +42,7 @@ Future<void> main() async {
       getPages: [
         GetPage(
           name: RouteConstant.init,
-          page: () => Onboarding4(),
+          page: () => AuthPage(),
           // binding: Onboarding3Binding()
         ),
         GetPage(

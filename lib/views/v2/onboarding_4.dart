@@ -1,3 +1,4 @@
+import 'package:choice/choice.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
@@ -6,14 +7,20 @@ class Onboarding4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? selectedValue;
+    List<String> choices = [
+      'Plumbing',
+      'Electrical',
+      'Renovation',
+      'Air-conditioning',
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 48, right: 48),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -50,80 +57,46 @@ class Onboarding4 extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 33),
-                      const SizedBox(
-                        width: 313,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(60))),
-                            hintText: 'Full name',
-                            contentPadding: EdgeInsets.all(18),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      SizedBox(
-                        width: 313,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2<String>(
-                            isExpanded: true,
-                            hint: Text(
-                              'Registration type',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Theme.of(context).hintColor,
+                      Center(
+                        child: SizedBox(
+                          height: 300,
+                          width: 333,
+                          child: InlineChoice<String>(
+                            multiple: true,
+                            clearable: true,
+                            value: ['Renovation'],
+                            onChanged: (value) {},
+                            itemCount: choices.length,
+                            itemBuilder: (selection, i) {
+                              return ChoiceChip(
+                                backgroundColor: Colors.white,
+                                selectedColor:
+                                    const Color.fromRGBO(142, 45, 226, 1),
+                                labelStyle: (selection.selected(choices[i]))
+                                    ? const TextStyle(color: Colors.white)
+                                    : const TextStyle(color: Colors.black),
+                                checkmarkColor: Colors.white,
+                                showCheckmark: true,
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(30)),
+                                selected: selection.selected(choices[i]),
+                                onSelected: selection.onSelected(choices[i]),
+                                label: Text(choices[i]),
+                                selectedShadowColor: Colors.transparent,
+                              );
+                            },
+                            listBuilder: ChoiceList.createWrapped(
+                              spacing: 6,
+                              runSpacing: 0,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 25,
                               ),
-                            ),
-                            items: [
-                              'Individual',
-                              'Company',
-                            ]
-                                .map((String item) => DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ))
-                                .toList(),
-                            value: selectedValue,
-                            onChanged: (String? value) {},
-                            buttonStyleData: ButtonStyleData(
-                              height: 50,
-                              width: 140,
-                              padding:
-                              const EdgeInsets.only(left: 14, right: 14),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                border: Border.all(
-                                  color: Colors.black26,
-                                ),
-                                color: Colors.white,
-                              ),
-                              elevation: 2,
-                            ),
-                            menuItemStyleData: const MenuItemStyleData(
-                              height: 50,
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 33),
-                      const SizedBox(
-                        width: 313,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(60))),
-                            hintText: 'SSM Number',
-                            contentPadding: EdgeInsets.all(18),
-                          ),
-                        ),
-                      ),
+                      )
                     ],
                   ),
                   SizedBox(
