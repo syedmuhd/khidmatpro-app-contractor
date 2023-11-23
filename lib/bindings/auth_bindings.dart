@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
+import 'package:khidmatpro_app_vendor/controllers/onboarding_controller.dart';
 import 'package:khidmatpro_app_vendor/services/auth_service.dart';
 
 class AuthBindings extends Bindings {
@@ -8,6 +9,8 @@ class AuthBindings extends Bindings {
   void dependencies() {
     debugPrint("[Binding Dependencies: AuthBindings]");
     Get.lazyPut(() => AuthService());
-    Get.lazyPut(() => AuthController(authService: Get.find()));
+    Get.lazyPut(() => AuthController(authService: Get.find<AuthService>()));
+    Get.lazyPut(
+        () => OnboardingController(authService: Get.find<AuthService>()));
   }
 }

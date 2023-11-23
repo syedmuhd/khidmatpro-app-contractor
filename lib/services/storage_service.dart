@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:khidmatpro_app_vendor/constants/app_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/storage_constant.dart';
 import 'package:khidmatpro_app_vendor/enums/storage_enums.dart';
@@ -76,6 +78,7 @@ class StorageService extends GetxService {
   Future<bool> isAuthenticated() async {
     final value = await readFromStorage(
         const StorageConstantsEnum(StorageConstant.apiKey));
+    debugPrint("is Authenticated $value");
 
     if (value == null || value == "") {
       return false;
@@ -124,13 +127,51 @@ class StorageService extends GetxService {
     return true;
   }
 
+  /// Return onboarding page based on current step
+  String getOnboardingPage(int currentOnboardingStep) {
+    String page = RouteConstant.onboarding1;
+    switch (currentOnboardingStep) {
+      case 1:
+        page = RouteConstant.onboarding1;
+        break;
+      case 2:
+        page = RouteConstant.onboarding2;
+        break;
+      case 3:
+        page = RouteConstant.onboarding3;
+        break;
+      case 4:
+        page = RouteConstant.onboarding4;
+        break;
+      case 5:
+        page = RouteConstant.onboarding5;
+        break;
+    }
+
+    return page;
+  }
+
+  /// Where to after opening the apps in fresh state mode
+  /// if authenticated, has completed onboarding?
   Future<String> getNextPage() async {
-    if (await isFirstTime()) {
-      return RouteConstant.auth;
-    } else if (await isAuthenticated()) {
-      return RouteConstant.home;
+    if (await isAuthenticated()) {
+      /// Onboarding journey still not finish, resume to current step
+      if (GetStorage().read(AppConstant.boolOnboardingCompleted) == false) {
+        return getOnboardingPage(
+            GetStorage().read(AppConstant.integerCurrentOnboardingStep));
+      } else {
+        return RouteConstant.home;
+      }
     } else {
       return RouteConstant.auth;
     }
+
+    // if (await isFirstTime()) {
+    //   return RouteConstant.auth;
+    // } else if (await isAuthenticated()) {
+    //   return RouteConstant.home;
+    // } else {
+    //   return RouteConstant.auth;
+    // }
   }
 }

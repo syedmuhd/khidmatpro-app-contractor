@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
@@ -70,7 +71,7 @@ class AuthDrawer extends GetView<AuthController> {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(60))),
                 hintText: 'Phone number or email address',
-                hintStyle: TextStyle(fontSize: 15),
+                hintStyle: TextStyle(fontSize: AppSizeConstant.hintFontSize),
                 contentPadding: EdgeInsets.all(18),
               ),
               keyboardType: TextInputType.phone,

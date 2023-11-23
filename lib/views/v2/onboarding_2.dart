@@ -1,10 +1,17 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
-import 'package:unicons/unicons.dart';
 import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/controllers/onboarding_controller.dart';
+import 'package:khidmatpro_app_vendor/utilities/formatter_only_alpha_and_number_and_single_space.dart';
+import 'package:khidmatpro_app_vendor/utilities/formatter_only_alpha_and_single_space.dart';
+import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
+import 'package:khidmatpro_app_vendor/utilities/app_input_field.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class Onboarding2 extends StatelessWidget {
+class Onboarding2 extends GetView<OnboardingController> {
   const Onboarding2({super.key});
 
   @override
@@ -22,46 +29,39 @@ class Onboarding2 extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 40,
-                            child: Ink(
-                              decoration: const ShapeDecoration(
-                                color: Colors.black,
-                                shape: CircleBorder(
-                                  side: BorderSide.none,
-                                ),
-                              ),
-                              child: IconButton(
-                                icon: const Icon(Icons.arrow_back),
-                                color: Colors.white,
-                                onPressed: () {},
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          const Text(
-                            "Tell us about yourself",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
+                      StepProgressIndicator(
+                        totalSteps: controller.totalSteps.value,
+                        currentStep: controller.currentStep.value,
+                        selectedColor: AppColors.primaryColor,
                       ),
-                      const SizedBox(height: 33),
                       const SizedBox(
+                        height: 30,
+                      ),
+                      const Text(
+                        "Perkenalkan diri anda",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      SizedBox(
                         width: 313,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(60))),
-                            hintText: 'Full name',
-                            contentPadding: EdgeInsets.all(18),
+                        child: AppInputField(
+                          text: "Nama penuh",
+                          textCapitalization: TextCapitalization.words,
+                          keyboardType: TextInputType.name,
+                          inputFormatters: [
+                            FormatterOnlyAlphaAndSingleSpace(),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            "Nama penuh seperti dalam kad pengenalan",
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
                       ),
@@ -70,17 +70,20 @@ class Onboarding2 extends StatelessWidget {
                         width: 313,
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2<String>(
+                            dropdownStyleData: DropdownStyleData(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20))),
                             isExpanded: true,
                             hint: Text(
-                              'Registration type',
+                              'Jenis pendaftaran',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Theme.of(context).hintColor,
                               ),
                             ),
                             items: [
-                              'Individual',
-                              'Company',
+                              'Individu',
+                              'Syarikat',
                             ]
                                 .map((String item) => DropdownMenuItem<String>(
                                       value: item,
@@ -98,7 +101,7 @@ class Onboarding2 extends StatelessWidget {
                               height: 50,
                               width: 140,
                               padding:
-                                  const EdgeInsets.only(left: 14, right: 14),
+                                  const EdgeInsets.only(left: 18, right: 18),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 border: Border.all(
@@ -114,16 +117,33 @@ class Onboarding2 extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 33),
                       const SizedBox(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            "Bekerja secara individu atau syarikat",
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 33),
+                      SizedBox(
                         width: 313,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(60))),
-                            hintText: 'SSM Number',
-                            contentPadding: EdgeInsets.all(18),
+                        child: AppInputField(
+                          text: "Nombor SSM",
+                          textCapitalization: TextCapitalization.characters,
+                          keyboardType: TextInputType.name,
+                          inputFormatters: [
+                            FormatterOnlyAlphaAndNumberAndSingleSpace()
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            "Nombor pendaftaran syarikat",
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
                       ),
@@ -133,7 +153,7 @@ class Onboarding2 extends StatelessWidget {
                     width: 312,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () => Get.toNamed(RouteConstant.register3),
+                      onPressed: () => Get.toNamed(RouteConstant.onboarding3),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(

@@ -35,4 +35,15 @@ class Contractor {
 
     return data;
   }
+
+  Contractor withoutToken() {
+    // Create a copy of the Contractor object without the "token" field
+    return Contractor(
+      id: id,
+      phoneNumber: phoneNumber,
+      email: email,
+      updatedAt: updatedAt,
+      createdAt: createdAt,
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
@@ -54,23 +55,23 @@ Future<void> main() async {
           page: () => AuthPage(),
         ),
         GetPage(
-          name: RouteConstant.register1,
+          name: RouteConstant.onboarding1,
           page: () => const Onboarding1(),
         ),
         GetPage(
-          name: RouteConstant.register2,
+          name: RouteConstant.onboarding2,
           page: () => const Onboarding2(),
         ),
         GetPage(
-          name: RouteConstant.register3,
+          name: RouteConstant.onboarding3,
           page: () => const Onboarding3(),
         ),
         GetPage(
-          name: RouteConstant.register4,
+          name: RouteConstant.onboarding4,
           page: () => const Onboarding4(),
         ),
         GetPage(
-          name: RouteConstant.register5,
+          name: RouteConstant.onboarding5,
           page: () => const Onboarding5(),
         ),
       ],
@@ -80,6 +81,7 @@ Future<void> main() async {
 
 /// Initialize services permanently in order
 Future<void> initializeServices() async {
+  await GetStorage.init();
   await Get.putAsync(() => StorageService().init(), permanent: true);
   await Get.putAsync(() => LocaleService().init(), permanent: true);
   // await Get.putAsync(() => ThemeService().init(), permanent: true);

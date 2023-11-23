@@ -89,7 +89,7 @@ class Onboarding3 extends StatelessWidget {
                   width: 312,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => Get.toNamed(RouteConstant.register4),
+                    onPressed: () => Get.toNamed(RouteConstant.onboarding4),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
