@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 
 class Onboarding1 extends StatelessWidget {
   const Onboarding1({super.key});
@@ -53,7 +55,7 @@ class Onboarding1 extends StatelessWidget {
                   width: 288,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => Get.toNamed(RouteConstant.register2),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(

@@ -1,6 +1,7 @@
 import 'package:choice/choice.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
+import 'package:get/get.dart';
 
 class Onboarding4 extends StatelessWidget {
   const Onboarding4({super.key});
@@ -64,7 +65,7 @@ class Onboarding4 extends StatelessWidget {
                           child: InlineChoice<String>(
                             multiple: true,
                             clearable: true,
-                            value: ['Renovation'],
+                            value: [],
                             onChanged: (value) {},
                             itemCount: choices.length,
                             itemBuilder: (selection, i) {
@@ -103,7 +104,7 @@ class Onboarding4 extends StatelessWidget {
                     width: 312,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () => {},
+                      onPressed: () => Get.toNamed(RouteConstant.register5),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(

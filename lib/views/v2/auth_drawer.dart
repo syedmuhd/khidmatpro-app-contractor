@@ -1,14 +1,22 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
+import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
+import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
+import 'package:khidmatpro_app_vendor/utilities/buttons/button_in_progress.dart';
 
-class AuthDrawer extends StatelessWidget {
+class AuthDrawer extends GetView<AuthController> {
   const AuthDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    controller.onInit();
+
     return Container(
-      padding: EdgeInsets.all(40),
+      color: AppColors.background,
+      padding: const EdgeInsets.all(40),
       child: Padding(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -49,31 +57,84 @@ class AuthDrawer extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text("or"),
+            const Text("or", style: TextStyle(fontSize: 16)),
             const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(60))),
-                  hintText: 'Phone number',
-                  contentPadding: EdgeInsets.all(18)),
+
+            /// PHONE NUMBER
+            TextField(
+              onTap: () {},
+              onChanged: (value) {
+                controller.phoneNumberOrEmail.value = value;
+              },
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(60))),
+                hintText: 'Phone number or email address',
+                hintStyle: TextStyle(fontSize: 15),
+                contentPadding: EdgeInsets.all(18),
+              ),
+              keyboardType: TextInputType.phone,
+              // Set the keyboard type to phone
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(11),
+              ],
             ),
             const SizedBox(height: 25),
-            const TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
+
+            /// PASSWORD
+            Obx(
+              () => TextField(
+                onChanged: (value) {
+                  controller.password.value = value;
+                },
+                obscureText: controller.obscureText.value,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(60))),
                   hintText: 'Password',
-                  contentPadding: EdgeInsets.all(18)),
+                  hintStyle: const TextStyle(fontSize: 15),
+                  contentPadding: const EdgeInsets.all(18),
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      // Toggle the obscureText state
+                      controller.obscureText.toggle();
+                    },
+                    child: Icon(
+                      controller.obscureText.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                  ),
+                ),
+              ),
             ),
-            const SizedBox(
-              height: 36,
+            Obx(
+              () => SizedBox(
+                height: 36,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: controller.hasError.isTrue
+                      ? AnimatedTextKit(
+                          totalRepeatCount: 1,
+                          animatedTexts: [
+                            TyperAnimatedText(
+                              controller.errorMessage.value,
+                              textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        )
+                      : null,
+                ),
+              ),
             ),
             SizedBox(
               width: double.maxFinite,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => controller.register(),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(
@@ -91,13 +152,24 @@ class AuthDrawer extends StatelessWidget {
                   ),
                   child: Container(
                     padding: const EdgeInsets.all(10),
-                    child: const Center(
-                      child: Text(
-                        "Register",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                    child: Center(
+                      child: controller.obx(
+                        (state) => const Text(
+                          "Register",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        onLoading: const ButtonInProgress(),
+                        onError: (error) => const Text(
+                          "Register",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
@@ -105,14 +177,28 @@ class AuthDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                "Already have an account? Login",
-                style: TextStyle(
-                  fontSize: 16,
+            const SizedBox(height: 25),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already have an account?",
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
                 ),
-              ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primaryColor,
+                  ),
+                )
+              ],
             )
           ],
         ),

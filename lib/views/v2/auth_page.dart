@@ -84,10 +84,10 @@ class AuthPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                             child: ElevatedButton(
                               style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(Colors
-                                          .black),// Replace with your desired color
-                                  ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(Colors
+                                        .black), // Replace with your desired color
+                              ),
                               onPressed: () {
                                 showModalBottomSheet(
                                   shape: const RoundedRectangleBorder(
@@ -99,7 +99,7 @@ class AuthPage extends StatelessWidget {
                                   context: context,
                                   isScrollControlled: true,
                                   builder: (BuildContext context) {
-                                    return const Wrap(
+                                    return Wrap(
                                       children: [AuthDrawer()],
                                     );
                                   },

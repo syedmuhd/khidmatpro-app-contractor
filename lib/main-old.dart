@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
-import 'package:khidmatpro_app_vendor/bindings/login_bindings.dart';
+import 'package:khidmatpro_app_vendor/bindings/auth_bindings.dart';
 import 'package:khidmatpro_app_vendor/bindings/welcome_bindings.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/services/locale_service.dart';

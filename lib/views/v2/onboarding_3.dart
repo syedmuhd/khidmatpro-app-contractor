@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:get/get.dart';
 
 class Onboarding3 extends StatelessWidget {
   const Onboarding3({super.key});
@@ -87,7 +89,7 @@ class Onboarding3 extends StatelessWidget {
                   width: 312,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => Get.toNamed(RouteConstant.register4),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
