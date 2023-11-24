@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:khidmatpro_app_vendor/constants/api_constant.dart';
@@ -55,5 +52,12 @@ class AuthService extends BaseProvider {
     GetStorage().write(AppConstant.boolOnboardingCompleted, false);
 
     Get.offAllNamed(RouteConstant.onboarding1);
+  }
+
+  /// Things to do if contractor is unauthenticated
+  void actionWhenUnauthenticated() {
+    // Empty the token
+    storageService.writeToStorage(StorageConstantsEnum.apiKey, "");
+    Get.offAllNamed(RouteConstant.auth);
   }
 }

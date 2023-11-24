@@ -71,8 +71,10 @@ class Onboarding2 extends GetView<OnboardingController> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2<String>(
                             dropdownStyleData: DropdownStyleData(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20))),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
                             isExpanded: true,
                             hint: Text(
                               'Jenis pendaftaran',
@@ -81,22 +83,24 @@ class Onboarding2 extends GetView<OnboardingController> {
                                 color: Theme.of(context).hintColor,
                               ),
                             ),
-                            items: [
-                              'Individu',
-                              'Syarikat',
-                            ]
-                                .map((String item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                        ),
+                            items: controller.registrationTypes.value
+                                .map<DropdownMenuItem<String>>(
+                                  (Map<String, dynamic> item) =>
+                                      DropdownMenuItem<String>(
+                                    value: item['id'].toString(),
+                                    child: Text(
+                                      item['name'],
+                                      style: const TextStyle(
+                                        fontSize: 18,
                                       ),
-                                    ))
+                                    ),
+                                  ),
+                                )
                                 .toList(),
                             value: selectedValue,
-                            onChanged: (String? value) {},
+                            onChanged: (String? value) {
+
+                            },
                             buttonStyleData: ButtonStyleData(
                               height: 50,
                               width: 140,

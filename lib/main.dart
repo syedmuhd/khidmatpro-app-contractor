@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:khidmatpro_app_vendor/bindings/auth_bindings.dart';
+import 'package:khidmatpro_app_vendor/bindings/onboarding2_bindings.dart';
 import 'package:khidmatpro_app_vendor/bindings/onboarding3_bindings.dart';
 import 'package:khidmatpro_app_vendor/bindings/welcome_bindings.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
@@ -61,6 +62,7 @@ Future<void> main() async {
         GetPage(
           name: RouteConstant.onboarding2,
           page: () => const Onboarding2(),
+          binding: Onboarding2Bindings(),
         ),
         GetPage(
           name: RouteConstant.onboarding3,

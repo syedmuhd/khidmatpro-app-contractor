@@ -10,7 +10,6 @@ class AuthBindings extends Bindings {
     debugPrint("[Binding Dependencies: AuthBindings]");
     Get.lazyPut(() => AuthService());
     Get.lazyPut(() => AuthController(authService: Get.find<AuthService>()));
-    Get.lazyPut(
-        () => OnboardingController(authService: Get.find<AuthService>()));
+    Get.lazyPut(() => OnboardingController());
   }
 }

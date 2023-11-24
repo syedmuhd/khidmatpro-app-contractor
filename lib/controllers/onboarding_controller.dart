@@ -5,16 +5,21 @@ import 'package:khidmatpro_app_vendor/constants/app_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/base_controller.dart';
 import 'package:khidmatpro_app_vendor/models/contractor.dart';
-import 'package:khidmatpro_app_vendor/services/auth_service.dart';
+import 'package:khidmatpro_app_vendor/models/registration_type.dart';
+import 'package:khidmatpro_app_vendor/services/global_service.dart';
 import 'package:khidmatpro_app_vendor/services/storage_service.dart';
 
 class OnboardingController extends BaseController with StateMixin<Contractor> {
-  final AuthService authService;
-
-  OnboardingController({required this.authService});
+  @override
+  void onInit() {
+    getRegistrationTypes();
+    super.onInit();
+  }
 
   final totalSteps = 4.obs;
   final currentStep = 1.obs;
+  final RxList<Map<String, dynamic>> registrationTypes =
+      <Map<String, dynamic>>[].obs;
 
   /// Get current onboarding step
   /// Update to next step until 5
@@ -40,5 +45,18 @@ class OnboardingController extends BaseController with StateMixin<Contractor> {
 
       Get.offAllNamed(nextOnboardingPage);
     }
+  }
+
+  /// Get available employment type
+  void getRegistrationTypes() {
+    GlobalService globalService = Get.find<GlobalService>();
+    globalService.getAllRegistrationTypes().then((response) {
+      if (response.isOk) {
+        return RegistrationType.fromJson(response);
+        // Convert api response (json object/array) into Dart Object
+      } else {
+        throw Exception();
+      }
+    });
   }
 }
