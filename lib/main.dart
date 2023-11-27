@@ -10,8 +10,10 @@ import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
 import 'package:khidmatpro_app_vendor/controllers/contractor_controller.dart';
 import 'package:khidmatpro_app_vendor/controllers/location_controller.dart';
+import 'package:khidmatpro_app_vendor/controllers/service_controller.dart';
 import 'package:khidmatpro_app_vendor/providers/contractor_provider.dart';
 import 'package:khidmatpro_app_vendor/providers/auth_provider.dart';
+import 'package:khidmatpro_app_vendor/providers/service_provider.dart';
 import 'package:khidmatpro_app_vendor/services/locale_service.dart';
 import 'package:khidmatpro_app_vendor/services/location_service.dart';
 import 'package:khidmatpro_app_vendor/services/storage_service.dart';
@@ -103,6 +105,7 @@ Future<void> initializeServices() async {
    */
   Get.put(AuthProvider(), permanent: true); // AuthProvider MUST use Get.put
   Get.lazyPut(() => ContractorProvider(), fenix: true);
+  Get.lazyPut(() => ServiceProvider(), fenix: true);
 
   /**
    * Controllers
@@ -114,6 +117,9 @@ Future<void> initializeServices() async {
           contractorProvider: Get.find<ContractorProvider>()),
       fenix: true);
   Get.lazyPut(() => LocationController(), fenix: true);
+  Get.lazyPut(
+      () => ServiceController(serviceProvider: Get.find<ServiceProvider>()),
+      fenix: true);
 }
 
 ThemeData _buildTheme() {

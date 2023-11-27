@@ -5,4 +5,5 @@ class ApiConstant {
 
   static const String contractor = "/contractors";
   static const String location = "/locations";
+  static const String service = "/services";
 }

@@ -2,18 +2,16 @@ import 'package:choice/choice.dart';
 import 'package:flutter/material.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/controllers/service_controller.dart';
 
 class Onboarding4 extends StatelessWidget {
   const Onboarding4({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> choices = [
-      'Plumbing',
-      'Electrical',
-      'Renovation',
-      'Air-conditioning',
-    ];
+    ServiceController serviceController = Get.find<ServiceController>();
+
+    serviceController.fetchAll();
 
     return Scaffold(
       body: SafeArea(
@@ -62,37 +60,55 @@ class Onboarding4 extends StatelessWidget {
                         child: SizedBox(
                           height: 300,
                           width: 333,
-                          child: InlineChoice<String>(
-                            multiple: true,
-                            clearable: true,
-                            value: [],
-                            onChanged: (value) {},
-                            itemCount: choices.length,
-                            itemBuilder: (selection, i) {
-                              return ChoiceChip(
-                                backgroundColor: Colors.white,
-                                selectedColor:
-                                    const Color.fromRGBO(142, 45, 226, 1),
-                                labelStyle: (selection.selected(choices[i]))
-                                    ? const TextStyle(color: Colors.white)
-                                    : const TextStyle(color: Colors.black),
-                                checkmarkColor: Colors.white,
-                                showCheckmark: true,
-                                shape: RoundedRectangleBorder(
-                                    side: const BorderSide(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(30)),
-                                selected: selection.selected(choices[i]),
-                                onSelected: selection.onSelected(choices[i]),
-                                label: Text(choices[i]),
-                                selectedShadowColor: Colors.transparent,
-                              );
-                            },
-                            listBuilder: ChoiceList.createWrapped(
-                              spacing: 6,
-                              runSpacing: 0,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 25,
+                          child: Obx(
+                            () => InlineChoice<String>(
+                              multiple: true,
+                              clearable: true,
+                              value: serviceController.selectedServicesList,
+                              onChanged: (value) {
+                                debugPrint(value.toString());
+                              },
+                              itemCount: serviceController.servicesList.length,
+                              itemBuilder: (selection, i) {
+                                return ChoiceChip(
+                                  backgroundColor: Colors.white,
+                                  selectedColor:
+                                      const Color.fromRGBO(142, 45, 226, 1),
+                                  labelStyle: (selection.selected(
+                                          serviceController.servicesList
+                                              .toList()[i]
+                                              .name!))
+                                      ? const TextStyle(color: Colors.white)
+                                      : const TextStyle(color: Colors.black),
+                                  checkmarkColor: Colors.white,
+                                  showCheckmark: true,
+                                  shape: RoundedRectangleBorder(
+                                      side:
+                                          const BorderSide(color: Colors.black),
+                                      borderRadius: BorderRadius.circular(30)),
+                                  selected: selection.selected(serviceController
+                                      .servicesList
+                                      .toList()[i]
+                                      .id
+                                      .toString()),
+                                  onSelected: selection.onSelected(
+                                      serviceController.servicesList
+                                          .toList()[i]
+                                          .id
+                                          .toString()),
+                                  label: Text(serviceController.servicesList
+                                      .toList()[i]
+                                      .name!),
+                                  selectedShadowColor: Colors.transparent,
+                                );
+                              },
+                              listBuilder: ChoiceList.createWrapped(
+                                spacing: 6,
+                                runSpacing: 0,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 25,
+                                ),
                               ),
                             ),
                           ),
