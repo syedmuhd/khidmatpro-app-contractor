@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/controllers/onboarding_controller.dart';
+import 'package:khidmatpro_app_vendor/controllers/contractor_controller.dart';
+import 'package:khidmatpro_app_vendor/utilities/buttons/button_in_progress.dart';
 
-class Onboarding1 extends GetView<OnboardingController> {
+class Onboarding1 extends GetView<ContractorController> {
   const Onboarding1({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ContractorController contractorController =
+        Get.find<ContractorController>();
+
     return Scaffold(
       body: SafeArea(
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -55,7 +59,7 @@ class Onboarding1 extends GetView<OnboardingController> {
                   width: 288,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => controller.goToNextOnboardingPage(),
+                    onPressed: () => contractorController.toOnboarding2(),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
@@ -76,14 +80,21 @@ class Onboarding1 extends GetView<OnboardingController> {
                       ),
                       child: Container(
                         padding: const EdgeInsets.all(10),
-                        child: const Center(
-                          child: Text(
-                            "Lets get started",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        child: Center(
+                          child: Obx(
+                            () =>
+                                contractorController.isProcessing.value == true
+                                    ? ButtonInProgress(
+                                        indicatorColor: Colors.white,
+                                      )
+                                    : const Text(
+                                        "Let's get started",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                           ),
                         ),
                       ),

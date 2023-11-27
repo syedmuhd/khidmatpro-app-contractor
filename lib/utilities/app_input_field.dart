@@ -3,14 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 
+typedef CallbackAction = void Function(String);
+
 class AppInputField extends StatelessWidget {
   final String text;
   final TextCapitalization textCapitalization;
   final TextInputType keyboardType;
   final List<TextInputFormatter> inputFormatters;
+  final CallbackAction onChanged;
 
   const AppInputField(
       {super.key,
+      required this.onChanged,
       required this.text,
       required this.textCapitalization,
       required this.keyboardType,
@@ -19,6 +23,7 @@ class AppInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
       cursorColor: Colors.black,

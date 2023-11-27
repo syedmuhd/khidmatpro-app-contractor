@@ -8,8 +8,8 @@ import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/buttons/button_in_progress.dart';
 
-class AuthDrawer extends GetView<AuthController> {
-  const AuthDrawer({super.key});
+class LoginDrawer extends GetView<AuthController> {
+  const LoginDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AuthDrawer extends GetView<AuthController> {
             const Align(
               alignment: Alignment.topLeft,
               child: Text(
-                "Hello",
+                "Welcome back!",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -34,7 +34,7 @@ class AuthDrawer extends GetView<AuthController> {
             const Align(
               alignment: Alignment.topLeft,
               child: Text(
-                "Please sign up to open an account",
+                "Sign in to continue",
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -65,12 +65,12 @@ class AuthDrawer extends GetView<AuthController> {
             TextField(
               onTap: () {},
               onChanged: (value) {
-                controller.phoneNumberOrEmail.value = value;
+                controller.phone.value = value;
               },
               decoration: const InputDecoration(
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(60))),
-                hintText: 'Phone number or email address',
+                hintText: 'Phone number',
                 hintStyle: TextStyle(fontSize: AppSizeConstant.hintFontSize),
                 contentPadding: EdgeInsets.all(18),
               ),
@@ -131,11 +131,13 @@ class AuthDrawer extends GetView<AuthController> {
                 ),
               ),
             ),
+
+            /// Login Button
             SizedBox(
               width: double.maxFinite,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => controller.register(),
+                onPressed: () => controller.login(),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(
@@ -156,16 +158,16 @@ class AuthDrawer extends GetView<AuthController> {
                     child: Center(
                       child: controller.obx(
                         (state) => const Text(
-                          "Register",
+                          "Login",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        onLoading: const ButtonInProgress(),
+                        onLoading: ButtonInProgress(),
                         onError: (error) => const Text(
-                          "Register",
+                          "Login",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -183,7 +185,7 @@ class AuthDrawer extends GetView<AuthController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Already have an account?",
+                  "Haven't signed up yet?",
                   style: TextStyle(
                     fontSize: 15,
                   ),
@@ -192,7 +194,7 @@ class AuthDrawer extends GetView<AuthController> {
                   width: 5,
                 ),
                 Text(
-                  "Login",
+                  "Create an account",
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

@@ -1,67 +1,145 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
-import 'package:khidmatpro_app_vendor/utilities/app_button.dart';
-import 'package:khidmatpro_app_vendor/utilities/app_text.dart';
-import 'package:khidmatpro_app_vendor/utilities/base/base_app_bar.dart';
-import 'package:lottie/lottie.dart';
-import 'package:unicons/unicons.dart';
+import 'package:khidmatpro_app_vendor/views/login_drawer.dart';
+import 'package:khidmatpro_app_vendor/views/register_drawer.dart';
 
 class AuthPage extends StatelessWidget {
-  AuthPage({super.key});
-
-  final GlobalKey<ScaffoldState> _homePageKey = GlobalKey<ScaffoldState>();
+  AuthPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _homePageKey,
-      appBar: AppBar(
-        elevation: 0.0,
-        centerTitle: true,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            AppText(
-              color: Colors.black,
-              text: "Khidmat",
-              size: 18,
+      body: Stack(
+        children: [
+          // Background Image with Transparent Effect
+          Positioned.fill(
+            child: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.4), // Adjust the opacity as needed
+                BlendMode.dstATop,
+              ),
+              child: Image.asset(
+                'assets/images/backgrounds/1.jpg',
+                // Replace with your image path
+                fit: BoxFit.cover,
+              ),
             ),
-            AppText(
-              text: "Pro",
-              size: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ],
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15, top: 15),
-                child: Lottie.asset('assets/lottie/sign_in.json'),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: AppButton(
-                    onPressed: () => Get.toNamed(RouteConstant.login),
-                    text: "sign_in".tr),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: AppButton(
-                    onPressed: () => Get.toNamed(RouteConstant.register),
-                    text: "register".tr),
-              ),
-            ],
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 54),
+            child: Column(
+              children: [
+                Expanded(child: Container()),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 61),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Welcome!",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          child: Text(
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        SizedBox(
+                          width: 285,
+                          height: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(Colors
+                                        .black), // Replace with your desired color
+                              ),
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(50),
+                                    ),
+                                  ),
+                                  backgroundColor: Colors.white,
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (BuildContext context) {
+                                    return const Wrap(
+                                      children: [LoginDrawer()],
+                                    );
+                                  },
+                                );
+                              },
+                              child: const Text(
+                                "I have an account",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          width: 285,
+                          height: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(Colors
+                                        .black), // Replace with your desired color
+                              ),
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(50),
+                                    ),
+                                  ),
+                                  backgroundColor: Colors.white,
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (BuildContext context) {
+                                    return const Wrap(
+                                      children: [RegisterDrawer()],
+                                    );
+                                  },
+                                );
+                              },
+                              child: const Text(
+                                "Register as contractor",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

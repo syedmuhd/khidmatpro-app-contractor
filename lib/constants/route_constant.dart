@@ -6,7 +6,7 @@ class RouteConstant {
   static const String settings = "/settings";
   static const String login = "/login";
   static const String register = "/register";
-  static const String onboarding1 = "/register1";
+  static const String onboarding1 = "/onboarding1";
   static const String onboarding2 = "/onboarding2";
   static const String onboarding3 = "/onboarding3";
   static const String onboarding4 = "/onboarding4";

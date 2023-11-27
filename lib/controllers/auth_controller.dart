@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/base_controller.dart';
 import 'package:khidmatpro_app_vendor/models/contractor.dart';
-import 'package:khidmatpro_app_vendor/services/auth_service.dart';
+import 'package:khidmatpro_app_vendor/providers/auth_provider.dart';
 
 class AuthController extends BaseController with StateMixin<Contractor> {
-  final AuthService authService;
+  final AuthProvider authProvider;
 
-  AuthController({required this.authService});
+  AuthController({required this.authProvider});
 
-  final phoneNumberOrEmail = ''.obs;
+  final phone = ''.obs;
   final password = ''.obs;
   final obscureText = true.obs;
   final hasError = false.obs;
@@ -25,21 +24,38 @@ class AuthController extends BaseController with StateMixin<Contractor> {
     super.onInit();
   }
 
-  void signIn() {
-    Get.offNamed(RouteConstant.home);
-  }
-
-  void register() {
-    if (phoneNumberOrEmail.value != '' && password.value != '') {
+  /// Login
+  void login() {
+    if (phone.value != '' && password.value != '') {
       change(data, status: RxStatus.loading());
-      authService
-          .register(
-              phoneNumberOrEmail: phoneNumberOrEmail.value,
-              password: password.value)
+      authProvider
+          .login(phone: phone.value, password: password.value)
           .then((contractor) {
         change(data, status: RxStatus.success());
         if (contractor is Contractor) {
-          authService.registerSuccess(contractor);
+          authProvider.loginSuccess(contractor);
+        } else if (contractor is String) {
+          errorMessage.value = contractor;
+          hasError.value = true;
+          Future.delayed(
+              const Duration(seconds: 5), () => hasError.value = false);
+        }
+      });
+    } else {
+      debugPrint("$runtimeType Wrong input");
+    }
+  }
+
+  /// Register
+  void register() {
+    if (phone.value != '' && password.value != '') {
+      change(data, status: RxStatus.loading());
+      authProvider
+          .register(phoneNumberOrEmail: phone.value, password: password.value)
+          .then((contractor) {
+        change(data, status: RxStatus.success());
+        if (contractor is Contractor) {
+          authProvider.registerSuccess(contractor);
         } else if (contractor is String) {
           errorMessage.value = contractor;
           hasError.value = true;

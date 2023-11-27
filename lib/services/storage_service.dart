@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:khidmatpro_app_vendor/constants/app_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/constants/storage_constant.dart';
 import 'package:khidmatpro_app_vendor/enums/storage_enums.dart';
+import 'package:khidmatpro_app_vendor/providers/auth_provider.dart';
 
 class StorageService extends GetxService {
   Future<StorageService> init() async {
@@ -74,15 +73,20 @@ class StorageService extends GetxService {
     }
   }
 
+  Future<String?> deleteAllKeyValueFromStorage() async {
+    await storage().deleteAll();
+  }
+
   /// Determine if user is authenticated
   Future<bool> isAuthenticated() async {
     final value = await readFromStorage(
         const StorageConstantsEnum(StorageConstant.apiKey));
-    debugPrint("is Authenticated $value");
-
+    debugPrint("$runtimeType isAuthenticated(): $value");
     if (value == null || value == "") {
+      debugPrint("$runtimeType FALSE");
       return false;
     } else {
+      debugPrint("$runtimeType TRUE");
       return true;
     }
   }
@@ -154,15 +158,21 @@ class StorageService extends GetxService {
   /// Where to after opening the apps in fresh state mode
   /// if authenticated, has completed onboarding?
   Future<String> getNextPage() async {
+    // Uncomment this to restore app back to initial/empty state
+    // deleteAllKeyValueFromStorage();
     if (await isAuthenticated()) {
+      debugPrint("$runtimeType isAuthenticated()");
+      var contractor = await Get.find<AuthProvider>().getCurrentContractor();
+
       /// Onboarding journey still not finish, resume to current step
-      if (GetStorage().read(AppConstant.boolOnboardingCompleted) == false) {
-        return getOnboardingPage(
-            GetStorage().read(AppConstant.integerCurrentOnboardingStep));
+      if (contractor.isOnboardingCompleted == 0) {
+        debugPrint("$runtimeType isOnboardingCompleted == 0");
+        return getOnboardingPage(contractor.currentOnboardingStep!);
       } else {
         return RouteConstant.home;
       }
     } else {
+      debugPrint("$runtimeType NOT isAuthenticated()");
       return RouteConstant.auth;
     }
 

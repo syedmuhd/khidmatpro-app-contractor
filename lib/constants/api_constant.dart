@@ -1,9 +1,8 @@
 class ApiConstant {
-  /// Contractor
-  static const String login = "/authentication/login";
-  static const String register = "/authentication/register";
-  static const String forgotPassword = "/authentication/forgot-password";
+  static const String login = "/login/contractor";
+  static const String register = "/register/contractor";
+  static const String forgotPassword = "/forgot-password/contractor";
 
-  /// Global
-  static const String registrationTypes = "/registration_types";
+  static const String contractor = "/contractors";
+  static const String location = "/locations";
 }
