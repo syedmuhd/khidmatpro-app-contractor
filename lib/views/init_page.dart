@@ -27,8 +27,6 @@ class InitPage extends StatelessWidget {
           debugPrint("$runtimeType nextPage $nextPage");
 
           if (nextPage != null) {
-            debugPrint("$runtimeType nextpage != null");
-
             Future.delayed(const Duration(milliseconds: 1), () {
               debugPrint("Next Page ${nextPage.toString()}");
               Get.offNamed(nextPage.toString());

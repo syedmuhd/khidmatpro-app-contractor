@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/controllers/base_controller.dart';
 import 'package:khidmatpro_app_vendor/models/contractor.dart';
 import 'package:khidmatpro_app_vendor/providers/auth_provider.dart';
+import 'package:logger/logger.dart';
 
 class AuthController extends BaseController with StateMixin<Contractor> {
   final AuthProvider authProvider;
 
   AuthController({required this.authProvider});
 
-  final phone = ''.obs;
+  final phoneCode = '60'.obs;
+  final phone = '162731882'.obs;
   final password = ''.obs;
   final obscureText = true.obs;
   final hasError = false.obs;
@@ -26,6 +28,9 @@ class AuthController extends BaseController with StateMixin<Contractor> {
 
   /// Login
   void login() {
+    var logger = Logger();
+
+    logger.d(phone);
     if (phone.value != '' && password.value != '') {
       change(data, status: RxStatus.loading());
       authProvider

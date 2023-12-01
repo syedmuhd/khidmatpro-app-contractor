@@ -68,7 +68,6 @@ class Location {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
 
-    // Remove entries with null values
     data.removeWhere((key, value) => value == null);
 
     return data;

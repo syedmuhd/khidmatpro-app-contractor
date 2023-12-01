@@ -159,6 +159,7 @@ class StorageService extends GetxService {
   /// if authenticated, has completed onboarding?
   Future<String> getNextPage() async {
     // Uncomment this to restore app back to initial/empty state
+    // Shortcut: Logout
     // deleteAllKeyValueFromStorage();
     if (await isAuthenticated()) {
       debugPrint("$runtimeType isAuthenticated()");

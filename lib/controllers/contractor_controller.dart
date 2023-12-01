@@ -49,7 +49,8 @@ class ContractorController extends BaseController {
                         currentOnboardingStep: currentOnboardingStep)
                     .toJsonWithoutNull(),
                 contractor.id)
-            .then((value) => RouteConstant.home);
+            .then((value) =>
+                storageService.getOnboardingPage(nextOnboardingStep));
       } else {
         debugPrint("$runtimeType Update to next step: $nextOnboardingStep");
 

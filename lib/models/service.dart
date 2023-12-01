@@ -25,6 +25,19 @@ class Service {
     return data;
   }
 
+  Map<String, dynamic> toJsonWithoutNull() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['is_enabled'] = isEnabled;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+
+    data.removeWhere((key, value) => value == null);
+
+    return data;
+  }
+
   static List<Service> listFromJson(list) =>
       List<Service>.from(list.map((x) => Service.fromJson(x)));
 }

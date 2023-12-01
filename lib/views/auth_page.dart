@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:khidmatpro_app_vendor/views/login_drawer.dart';
-import 'package:khidmatpro_app_vendor/views/register_drawer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 
 class AuthPage extends StatelessWidget {
-  AuthPage({Key? key});
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,109 +26,81 @@ class AuthPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 54),
+            padding: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Column(
               children: [
-                Expanded(child: Container()),
+                Expanded(
+                  child: Container(),
+                ),
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.only(top: 61),
+                    padding: EdgeInsets.only(top: 60.sp),
                     child: Column(
                       children: [
-                        const Text(
+                        Text(
                           "Welcome!",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 20),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
+                        SizedBox(height: 20.h),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 25.sp),
                           child: Text(
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.normal,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 40),
+                        SizedBox(height: 40.sp),
                         SizedBox(
-                          width: 285,
-                          height: 50,
+                          width: 285.sp,
+                          height: 50.sp,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.sp),
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(Colors
                                         .black), // Replace with your desired color
                               ),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(50),
-                                    ),
-                                  ),
-                                  backgroundColor: Colors.white,
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (BuildContext context) {
-                                    return const Wrap(
-                                      children: [LoginDrawer()],
-                                    );
-                                  },
-                                );
-                              },
-                              child: const Text(
+                              onPressed: () => Get.toNamed(RouteConstant.login),
+                              child: Text(
                                 "I have an account",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.sp),
                         SizedBox(
-                          width: 285,
-                          height: 50,
+                          width: 285.w,
+                          height: 50.h,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.sp),
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(Colors
                                         .black), // Replace with your desired color
                               ),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(50),
-                                    ),
-                                  ),
-                                  backgroundColor: Colors.white,
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (BuildContext context) {
-                                    return const Wrap(
-                                      children: [RegisterDrawer()],
-                                    );
-                                  },
-                                );
-                              },
-                              child: const Text(
+                              onPressed: () =>
+                                  Get.toNamed(RouteConstant.register),
+                              child: Text(
                                 "Register as contractor",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
+                                textScaler: const TextScaler.linear(1.0),
                               ),
                             ),
                           ),

@@ -83,7 +83,8 @@ class Onboarding4 extends StatelessWidget {
                                     value:
                                         serviceController.selectedServicesList,
                                     onChanged: (value) {
-                                      debugPrint(value.toString());
+                                      serviceController
+                                          .selectedServicesList.value = value;
                                     },
                                     itemCount:
                                         serviceController.servicesList.length,

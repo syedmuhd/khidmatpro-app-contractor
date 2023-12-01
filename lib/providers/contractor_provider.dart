@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khidmatpro_app_vendor/constants/api_constant.dart';
 import 'package:khidmatpro_app_vendor/models/contractor.dart';
 import 'package:khidmatpro_app_vendor/models/location.dart';
+import 'package:khidmatpro_app_vendor/models/service.dart';
 import 'package:khidmatpro_app_vendor/providers/base_provider.dart';
 
 class ContractorProvider extends BaseProvider {
@@ -21,5 +23,11 @@ class ContractorProvider extends BaseProvider {
   Future<Response<Location>> updateLocation(payload, contractorId) {
     return patch<Location>("${ApiConstant.location}/$contractorId", payload,
         decoder: (obj) => Location.fromJson(obj));
+  }
+
+  // Update contractor services
+  Future<Response> updateServices(payload) {
+    debugPrint(payload.toString());
+    return post(ApiConstant.service, payload);
   }
 }

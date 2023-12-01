@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:khidmatpro_app_vendor/constants/api_constant.dart';
@@ -81,6 +82,7 @@ class AuthProvider extends BaseProvider {
           .getOnboardingPage(contractor.currentOnboardingStep!);
       Get.offAllNamed(nextPage);
     } else {
+      debugPrint("Onboarding already completed: Go to Home");
       Get.offAllNamed(RouteConstant.home);
     }
   }
