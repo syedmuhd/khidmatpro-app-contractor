@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:khidmatpro_app_vendor/views/home_page.dart';
 import 'package:khidmatpro_app_vendor/views/login_page.dart';
+import 'package:khidmatpro_app_vendor/views/recovery_page.dart';
 import 'package:khidmatpro_app_vendor/views/register_page.dart';
 import 'package:khidmatpro_app_vendor/bindings/onboarding3_bindings.dart';
 
@@ -82,6 +83,10 @@ class KhidmatProContractorApp extends StatelessWidget {
               GetPage(
                 name: RouteConstant.register,
                 page: () => const RegisterPage(),
+              ),
+              GetPage(
+                name: RouteConstant.recovery,
+                page: () => const RecoveryPage(),
               ),
               GetPage(
                 name: RouteConstant.onboarding1,

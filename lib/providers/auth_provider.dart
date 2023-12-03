@@ -47,6 +47,21 @@ class AuthProvider extends BaseProvider {
     }
   }
 
+  /// Register
+  Future<dynamic> recovery(
+      {required int dialCode, required String phone}) async {
+    final response = await post(ApiConstant.recovery, {
+      "dial_code": dialCode,
+      "phone": phone,
+    });
+
+    if (response.isOk) {
+      return Contractor.fromJson(response.body);
+    } else {
+      return response.body['message'];
+    }
+  }
+
   /// Things to do if contractor is unauthenticated
   void actionWhenUnauthenticated() {
     // Empty the token

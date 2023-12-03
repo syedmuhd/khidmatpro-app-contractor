@@ -7,6 +7,7 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:khidmatpro_app_vendor/components/inputs/app_input_phone_number.dart';
 import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/buttons/button_in_progress.dart';
@@ -16,8 +17,6 @@ class LoginPage extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.onInit();
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -170,8 +169,12 @@ class LoginPage extends GetView<AuthController> {
                           SizedBox(
                             width: 7.h,
                           ),
-                          const Text("Terlupa?",
-                              style: TextStyle(color: AppColors.primaryColor)),
+                          GestureDetector(
+                            onTap: () => Get.toNamed(RouteConstant.recovery),
+                            child: const Text("Terlupa?",
+                                style:
+                                    TextStyle(color: AppColors.primaryColor)),
+                          ),
                           SizedBox(
                             width: 20.h,
                           ),

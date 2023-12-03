@@ -15,8 +15,6 @@ class RegisterPage extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.onInit();
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
