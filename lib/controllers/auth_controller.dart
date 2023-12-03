@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/base_controller.dart';
 import 'package:khidmatpro_app_vendor/models/contractor.dart';
 import 'package:khidmatpro_app_vendor/providers/auth_provider.dart';
@@ -10,9 +11,10 @@ class AuthController extends BaseController with StateMixin<Contractor> {
 
   AuthController({required this.authProvider});
 
-  final phoneCode = '60'.obs;
-  final phone = '162731882'.obs;
+  final dialCode = 60.obs; // default Malaysia
+  final phone = ''.obs;
   final password = ''.obs;
+  final passwordConfirmation = ''.obs;
   final obscureText = true.obs;
   final hasError = false.obs;
   final errorMessage = ''.obs;
@@ -28,13 +30,13 @@ class AuthController extends BaseController with StateMixin<Contractor> {
 
   /// Login
   void login() {
-    var logger = Logger();
-
-    logger.d(phone);
     if (phone.value != '' && password.value != '') {
       change(data, status: RxStatus.loading());
       authProvider
-          .login(phone: phone.value, password: password.value)
+          .login(
+              dialCode: dialCode.value,
+              phone: phone.value,
+              password: password.value)
           .then((contractor) {
         change(data, status: RxStatus.success());
         if (contractor is Contractor) {
@@ -56,7 +58,11 @@ class AuthController extends BaseController with StateMixin<Contractor> {
     if (phone.value != '' && password.value != '') {
       change(data, status: RxStatus.loading());
       authProvider
-          .register(phoneNumberOrEmail: phone.value, password: password.value)
+          .register(
+              dialCode: dialCode.value,
+              phone: phone.value,
+              password: password.value,
+              passwordConfirmation: passwordConfirmation.value)
           .then((contractor) {
         change(data, status: RxStatus.success());
         if (contractor is Contractor) {

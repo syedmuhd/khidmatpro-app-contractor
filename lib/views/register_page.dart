@@ -1,13 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:khidmatpro_app_vendor/components/inputs/app_input_phone_number.dart';
-import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
-import 'package:khidmatpro_app_vendor/constants/route_constant.dart';
 import 'package:khidmatpro_app_vendor/controllers/auth_controller.dart';
 import 'package:khidmatpro_app_vendor/utilities/app_colors.dart';
 import 'package:khidmatpro_app_vendor/utilities/buttons/button_in_progress.dart';
@@ -101,10 +99,14 @@ class RegisterPage extends GetView<AuthController> {
                 SizedBox(height: 20.h),
 
                 /// PHONE NUMBER
-                /// PHONE NUMBER
-                AppInputPhoneNumber(onChanged: (PhoneNumber phone) {
-                  controller.phone.value = phone.number;
-                }),
+                AppInputPhoneNumber(
+                  onChanged: (PhoneNumber phone) {
+                    controller.phone.value = phone.number;
+                  },
+                  onCountryChanged: (Country country) {
+                    controller.dialCode.value = int.parse(country.dialCode);
+                  },
+                ),
                 const SizedBox(height: 25),
 
                 /// PASSWORD
@@ -141,7 +143,7 @@ class RegisterPage extends GetView<AuthController> {
                 Obx(
                   () => TextField(
                     onChanged: (value) {
-                      controller.password.value = value;
+                      controller.passwordConfirmation.value = value;
                     },
                     obscureText: controller.obscureText.value,
                     decoration: InputDecoration(

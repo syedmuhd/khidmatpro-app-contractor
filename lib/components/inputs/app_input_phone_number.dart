@@ -6,9 +6,11 @@ import 'package:intl_phone_field/phone_number.dart';
 import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
 
 class AppInputPhoneNumber extends StatelessWidget {
-  const AppInputPhoneNumber({super.key, required this.onChanged});
+  const AppInputPhoneNumber(
+      {super.key, required this.onChanged, this.onCountryChanged});
 
   final void Function(PhoneNumber) onChanged;
+  final void Function(Country)? onCountryChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class AppInputPhoneNumber extends StatelessWidget {
         )
       ],
       onChanged: onChanged,
+      onCountryChanged: onCountryChanged,
     );
   }
 }

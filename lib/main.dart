@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:khidmatpro_app_vendor/views/home_page.dart';
 import 'package:khidmatpro_app_vendor/views/login_page.dart';
 import 'package:khidmatpro_app_vendor/views/register_page.dart';
 import 'package:khidmatpro_app_vendor/bindings/onboarding3_bindings.dart';
@@ -42,16 +43,15 @@ Future<void> main() async {
 
   await initializeServices();
 
-  runApp(const MyApp());
+  runApp(const KhidmatProContractorApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class KhidmatProContractorApp extends StatelessWidget {
+  const KhidmatProContractorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        // 1080x2400 was the initial design sized, built using Samsung A52 5G (407 ppi)
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
@@ -102,6 +102,10 @@ class MyApp extends StatelessWidget {
               GetPage(
                 name: RouteConstant.onboarding5,
                 page: () => const Onboarding5(),
+              ),
+              GetPage(
+                name: RouteConstant.home,
+                page: () => HomePage(),
               ),
             ],
           );

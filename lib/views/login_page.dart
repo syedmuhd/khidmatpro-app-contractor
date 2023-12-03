@@ -1,11 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:khidmatpro_app_vendor/components/inputs/app_input_phone_number.dart';
 import 'package:khidmatpro_app_vendor/constants/app_size_constant.dart';
@@ -19,8 +17,6 @@ class LoginPage extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     controller.onInit();
-
-    TextEditingController phoneController = TextEditingController();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -104,9 +100,14 @@ class LoginPage extends GetView<AuthController> {
                 SizedBox(height: 20.h),
 
                 /// PHONE NUMBER
-                AppInputPhoneNumber(onChanged: (PhoneNumber phone) {
-                  controller.phone.value = phone.number;
-                }),
+                AppInputPhoneNumber(
+                  onChanged: (PhoneNumber phone) {
+                    controller.phone.value = phone.number;
+                  },
+                  onCountryChanged: (Country country) {
+                    controller.dialCode.value = int.parse(country.dialCode);
+                  },
+                ),
                 // TextField(
                 //   cursorOpacityAnimates: true,
                 //   onChanged: (value) {
@@ -266,12 +267,14 @@ class LoginPage extends GetView<AuthController> {
                     SizedBox(
                       width: 5.sp,
                     ),
-                    Text(
-                      "Daftar",
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.primaryColor,
+                    GestureDetector(
+                      child: Text(
+                        "Daftar",
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primaryColor,
+                        ),
                       ),
                     )
                   ],

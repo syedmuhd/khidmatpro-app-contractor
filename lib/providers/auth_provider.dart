@@ -14,9 +14,11 @@ class AuthProvider extends BaseProvider {
 
   /// Login
   Future<dynamic> login(
-      {required String phone, required String password}) async {
-    final response =
-        await post(ApiConstant.login, {"phone": phone, "password": password});
+      {required int dialCode,
+      required String phone,
+      required String password}) async {
+    final response = await post(ApiConstant.login,
+        {"dial_code": dialCode, "phone": phone, "password": password});
 
     if (response.isOk) {
       return Contractor.fromJson(response.body);
@@ -27,9 +29,16 @@ class AuthProvider extends BaseProvider {
 
   /// Register
   Future<dynamic> register(
-      {required String phoneNumberOrEmail, required String password}) async {
-    final response = await post(ApiConstant.register,
-        {"phone": phoneNumberOrEmail, "password": password});
+      {required int dialCode,
+      required String phone,
+      required String password,
+      required String passwordConfirmation}) async {
+    final response = await post(ApiConstant.register, {
+      "dial_code": dialCode,
+      "phone": phone,
+      "password": password,
+      "password_confirmation": passwordConfirmation
+    });
 
     if (response.isOk) {
       return Contractor.fromJson(response.body);
